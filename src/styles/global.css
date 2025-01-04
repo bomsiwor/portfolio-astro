@@ -3,3 +3,7 @@
 html {
   @apply selection:text-lighter-950 selection:bg-primary-300;
 }
+
+h1 {
+  @apply text-5xl font-bold;
+}
