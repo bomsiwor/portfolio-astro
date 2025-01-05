@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import WorksCard from "../components/front-page/WorksCard.astro";
 import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <html lang="en" class="bg-lighter-50">
@@ -65,15 +66,12 @@ import Header from "../components/Header.astro";
                             </div>
                             <p>I'm lazy, ask AI about this guy 🤖</p>
                         </button>
-
-                        <button
-                            class="mb-2 w-full rounded border border-darker-700 bg-gradient-to-br from-white to-slate-100 p-2 text-slate-900"
-                            >Talk with me directly 🤙</button
-                        >
                     </div>
                 </div>
             </div>
         </section>
+
+        <section class="p-2"></section>
 
         <!-- About section -->
         <section id="about" class="p-2">
@@ -122,6 +120,9 @@ import Header from "../components/Header.astro";
                 <p slot="icon-last" class="col-span-1">icon</p>
             </WorksCard>
         </section>
+
+        <!-- Footer Section -->
+        <Footer />
 
         <script>
             import Typed from "typed.js";
