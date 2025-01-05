@@ -57,7 +57,17 @@ export default {
           '900': '#134a95',
           '950': '#102c57',
         }
+      },
+      "animation": {
+        "light-rise": "light-rise 8s ease-out infinite"
+      },
+      "keyframes": {
+        "light-rise": {
+          '0%, 100%': { translate: '0 0', },
+          '50%': { translate: '100vw 500px', scale: '150%' },
+        }
       }
+
     },
   },
   plugins: [],

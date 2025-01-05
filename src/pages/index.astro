@@ -3,6 +3,7 @@ import "../styles/global.css";
 import WorksCard from "../components/front-page/WorksCard.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import GithubIcon from "../components/icons/GithubIcon.astro";
 ---
 
 <html lang="en" class="bg-lighter-50">
@@ -13,14 +14,14 @@ import Footer from "../components/Footer.astro";
         <meta name="generator" content={Astro.generator} />
         <title>Portofolio Bomsiwor</title>
     </head>
-    <body class="px-2 font-bricol">
+    <body class="relative overflow-x-hidden px-2 font-bricol">
         <!-- Header Section -->
         <Header />
 
         <!-- Hero Section -->
         <section id="hero" class="min-h-[110vh]">
             <div
-                class="hero relative left-1/2 top-3 min-h-[65vh] w-[95vw] max-w-screen-sm -translate-x-1/2 rounded-md border border-primary-500 bg-gradient-to-t from-primary-50 to-primary-200 px-10 pt-10 sm:max-w-[90vw]"
+                class="hero relative left-1/2 top-3 min-h-[65vh] w-[95vw] max-w-screen-sm -translate-x-1/2 rounded-md border border-primary-500 bg-gradient-to-t from-primary-50 to-primary-200 px-10 pt-10 shadow-md transition-all duration-200 hover:shadow-lg sm:max-w-[90vw]"
             >
                 <h2 class="text-center text-3xl font-semibold text-slate-700">
                     This is
@@ -75,9 +76,9 @@ import Footer from "../components/Footer.astro";
 
         <!-- About section -->
         <section id="about" class="p-2">
-            <h1>About me and works</h1>
+            <h1 class="text-darker-950">About me and works</h1>
 
-            <div class="text-justify text-sm">
+            <div class="text-justify text-sm text-slate-700">
                 <p class="mt-2">
                     Simply, i am a web backend developer. Ordinarily work 7-4.
                     Always curious and learn from everything i've read about
@@ -98,7 +99,7 @@ import Footer from "../components/Footer.astro";
                 title="Project Portfolio"
                 subtitle="My Handed over projects."
             >
-                <p slot="icon-first" class="col-span-1">icon</p>
+                <GithubIcon width="40px" height="40px" slot="icon-first" />
                 <p slot="icon-last" class="col-span-1">icon</p>
             </WorksCard>
 
@@ -106,23 +107,28 @@ import Footer from "../components/Footer.astro";
                 title="Blogs"
                 subtitle="Read my written article about anything"
             >
-                <p slot="icon-first" class="col-span-1">icon</p>
+                <GithubIcon width="40px" height="40px" slot="icon-first" />
                 <p slot="icon-last" class="col-span-1">icon</p>
             </WorksCard>
 
             <WorksCard title="Playground" subtitle="Im trying everything here.">
-                <p slot="icon-first" class="col-span-1">icon</p>
-                <p slot="icon-last" class="col-span-1">icon</p>
-            </WorksCard>
-
-            <WorksCard title="Medium!" subtitle="Im also write on medium">
-                <p slot="icon-first" class="col-span-1">icon</p>
+                <GithubIcon width="40px" height="40px" slot="icon-first" />
                 <p slot="icon-last" class="col-span-1">icon</p>
             </WorksCard>
         </section>
 
         <!-- Footer Section -->
         <Footer />
+
+        <div
+            class="absolute -right-48 bottom-1/2 -z-10 aspect-square w-[480px] rounded-full bg-primary-600/50 opacity-15 blur-2xl"
+        >
+        </div>
+
+        <div
+            class="animate-light-rise fixed -left-48 bottom-0 -z-10 aspect-square w-[600px] rounded-full bg-lighter-600/50 opacity-30 blur-3xl"
+        >
+        </div>
 
         <script>
             import Typed from "typed.js";
