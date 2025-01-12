@@ -11,3 +11,7 @@ h1 {
 h2 {
   @apply text-3xl font-bold;
 }
+
+.click-shrink {
+  @apply duration-100 ease-out active:scale-90;
+}

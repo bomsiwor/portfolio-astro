@@ -46,13 +46,14 @@ import GithubIcon from "../components/icons/GithubIcon.astro";
 
                     <div>
                         <button
-                            class="mb-2 w-full rounded border border-lighter-300 bg-lighter-50 p-2 text-lighter-900"
+                            class="click-shrink mb-2 w-full rounded border border-lighter-300 bg-lighter-50 p-2 text-lighter-900"
                             >Explore about me Effortly 📚</button
                         >
 
                         <button
-                            class="relative mb-2 w-full rounded border border-darker-950 bg-secondary-950 p-2 text-sm text-white"
+                            class="click-shrink relative mb-2 w-full rounded border border-darker-950 bg-secondary-950 p-2 text-sm text-white"
                         >
+                            <!-- Ping Indicator -->
                             <div
                                 class="absolute right-0 top-0 -translate-y-1/2 translate-x-1/2"
                             >
@@ -121,12 +122,12 @@ import GithubIcon from "../components/icons/GithubIcon.astro";
         <Footer />
 
         <div
-            class="absolute -right-48 bottom-1/2 -z-10 aspect-square w-[480px] rounded-full bg-primary-600/50 opacity-15 blur-2xl"
+            class="fixed -right-48 bottom-1/2 -z-10 aspect-square w-[480px] rounded-full bg-primary-600/50 opacity-15 blur-2xl"
         >
         </div>
 
         <div
-            class="animate-light-rise fixed -left-48 bottom-0 -z-10 aspect-square w-[600px] rounded-full bg-lighter-600/50 opacity-30 blur-3xl"
+            class="fixed -left-48 bottom-0 -z-10 aspect-square w-[600px] animate-light-rise rounded-full bg-lighter-600/50 opacity-30 blur-3xl"
         >
         </div>
 
