@@ -3,7 +3,12 @@ import "../styles/global.css";
 import WorksCard from "../components/front-page/WorksCard.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import FooterRay from "../components/FooterRay.astro";
 import GithubIcon from "../components/icons/GithubIcon.astro";
+import ReactIcon from "../components/icons/ReactIcon.astro";
+import GolangIcon from "../components/icons/GolangIcon.astro";
+import TSIcon from "../components/icons/TSIcon.astro";
+import PHPIcon from "../components/icons/PHPIcon.astro";
 ---
 
 <html lang="en" class="bg-lighter-50">
@@ -14,7 +19,7 @@ import GithubIcon from "../components/icons/GithubIcon.astro";
         <meta name="generator" content={Astro.generator} />
         <title>Portofolio Bomsiwor</title>
     </head>
-    <body class="relative overflow-x-hidden px-2 font-bricol">
+    <body class="w-[100vw] overflow-x-hidden px-2 font-bricol">
         <!-- Header Section -->
         <Header />
 
@@ -40,8 +45,30 @@ import GithubIcon from "../components/icons/GithubIcon.astro";
                     class="absolute left-1/2 top-1/2 flex h-[600px] w-[75vw] -translate-x-1/2 flex-col gap-4 sm:w-[300px]"
                 >
                     <div
-                        class="photo-card h-[400px] rounded-xl bg-black shadow-sm shadow-black"
+                        class="photo-card flex h-[400px] flex-col rounded-xl border border-lighter-100 bg-gradient-to-tr from-primary-100/10 to-primary-300/50 p-4 shadow-lg backdrop-blur-sm"
                     >
+                        <div
+                            class="h-[200px] w-full overflow-hidden rounded-lg bg-red-600"
+                        >
+                            <img
+                                class="h-full w-full object-cover"
+                                src="/photo-light.webp"
+                                alt="Photo light"
+                            />
+                        </div>
+
+                        <div class="mt-2 w-full grow">
+                            <p class="text-lg font-bold text-darker-950">
+                                Dimas Febrian Bomanarakasura
+                            </p>
+                            <p class="text-xs text-black">Backend Developer</p>
+                        </div>
+
+                        <div class="flex justify-end gap-1">
+                            <GolangIcon width="2em" class="fill-darker-950" />
+                            <PHPIcon width="2em" class="fill-darker-950" />
+                            <TSIcon width="2em" class="fill-darker-950" />
+                        </div>
                     </div>
 
                     <div>
@@ -88,8 +115,7 @@ import GithubIcon from "../components/icons/GithubIcon.astro";
                 </p>
 
                 <p class="mt-2">
-                    Notice if you see any atom icon, it's not React icon! You
-                    should believe that i have <b>Nuclear & physics</b> background!
+                    You should believe that i have <b>Nuclear & physics</b> background!
                 </p>
             </div>
         </section>
@@ -121,15 +147,16 @@ import GithubIcon from "../components/icons/GithubIcon.astro";
         <!-- Footer Section -->
         <Footer />
 
-        <div
-            class="fixed -right-48 bottom-1/2 -z-10 aspect-square w-[480px] rounded-full bg-primary-600/50 opacity-15 blur-2xl"
-        >
-        </div>
+        <!-- <div -->
+        <!--     class="absolute -right-32 top-1/2 -z-10 aspect-square w-[480px] rounded-full bg-primary-600/50 opacity-15 blur-2xl" -->
+        <!-- > -->
+        <!-- </div> -->
 
-        <div
-            class="fixed -left-48 bottom-0 -z-10 aspect-square w-[600px] animate-light-rise rounded-full bg-lighter-600/50 opacity-30 blur-3xl"
-        >
-        </div>
+        <!-- <div class="fixed right-0 -translate-y-[50%]"> -->
+        <!--     <ReactIcon width="300px" height="300px" /> -->
+        <!-- </div> -->
+
+        <FooterRay />
 
         <script>
             import Typed from "typed.js";
