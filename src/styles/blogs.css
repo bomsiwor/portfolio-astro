@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
+
+body {
+  @apply font-bricol bg-primary-50 selection:bg-primary-600 selection:text-white;
+}
+
+h1 {
+  @apply text-3xl font-semibold my-8 lg:text-5xl text-primary-900;
+}
+
+.title {
+  @apply text-5xl text-center my-24 lg:text-8xl text-primary-700;
+}
+
+h2 {
+  @apply text-2xl my-6 lg:text-4xl text-primary-900;
+}
+
+p {
+  @apply text-justify my-4 lg:mt-0 lg:mb-4;
+}
+
+ol {
+  @apply list-decimal pl-5;
+}
+
+ol li {
+  @apply pl-2;
+}
+
+ol li::marker {
+  @apply font-bold;
+}
+
+blockquote {
+  @apply p-4 italic bg-primary-200 text-primary-700 lg:my-4;
+}
+
+blockquote p {
+  @apply lg:mt-0 lg:mb-0;
+}
+
+a {
+  @apply text-primary-700 hover:text-black transition duration-200;
+}
+
+a::after {
+  @apply content-['🔗'] text-sm;
+}

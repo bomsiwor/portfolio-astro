@@ -1,0 +1,55 @@
+---
+import "../styles/blogs.css";
+
+const { frontmatter } = Astro.props;
+
+const dateOpt: Intl.DateTimeFormatOptions = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+};
+
+const pubDate = new Intl.DateTimeFormat("en-US", dateOpt).format(
+    new Date(frontmatter.pubDate),
+);
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{frontmatter.title}</title>
+    </head>
+    <body>
+        <div class="p-10 lg:px-72 lg:py-10">
+            <div class="title">{frontmatter.title}</div>
+
+            <p class="text-center text-sm font-light">
+                Published at : {pubDate}
+            </p>
+
+            <p class="text-center text-sm font-light">
+                written by {frontmatter.author}
+            </p>
+
+            <div class="-mx-10 my-8 w-screen max-w-[100vw] lg:-mx-72">
+                <img
+                    src={frontmatter.image.url}
+                    alt={frontmatter.image.alt}
+                    class="w-full"
+                />
+            </div>
+
+            <slot />
+        </div>
+
+        <div
+            class="bg-gradient-to-br from-primary-600/20 to-transparent p-8 text-primary-700 lg:text-center"
+        >
+            <div class="text-2xl">Thanks for reading!</div>
+            <div>give me kind feedback below, yea!</div>
+        </div>
+    </body>
+</html>
