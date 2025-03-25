@@ -1,0 +1,54 @@
+---
+interface Props {
+    title: string;
+    excerpt: string;
+    tags: string[];
+    year: number;
+    url?: string;
+}
+
+const { title, excerpt, tags, year, url = "#" } = Astro.props;
+
+// Compute maximum tags
+// Only show maximum 3 tags
+const additionalTag = tags.length > 3 ? tags.length - 3 : 0;
+---
+
+<div class="flex items-center gap-4 border border-catpuccin-mauve p-2">
+    <div class="h-24 w-24 flex-shrink-0 bg-gray-200"></div>
+
+    <div class="flex-1">
+        <a
+            class="mb-2 text-lg transition-colors duration-200 hover:text-catpuccin-sky"
+            href={url}
+        >
+            {title.length > 40 ? title.substring(0, 40) + "..." : title}
+        </a>
+        <p class="mb-2 text-xs text-catpuccin-subtext-0">
+            "{excerpt.substring(0, 100)}..."
+        </p>
+        <div class="flex items-center justify-between">
+            <div class="flex space-x-1">
+                {
+                    tags
+                        .slice(0, 3)
+                        .map((tag) => (
+                            <span class="border border-gray-600 px-2 py-0.5 text-xs">
+                                {tag}
+                            </span>
+                        ))
+                }
+                {
+                    additionalTag !== 0 && (
+                        <span class="border border-gray-600 px-2 py-0.5 text-xs">
+                            +{additionalTag}
+                        </span>
+                    )
+                }
+            </div>
+            <span class="text-catpuccin-subtext-0">
+                {year}
+            </span>
+        </div>
+    </div>
+</div>

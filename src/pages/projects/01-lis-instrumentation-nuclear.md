@@ -1,6 +1,7 @@
 ---
 layout: ../../layouts/ArticleLayouts.astro
-title: LIS Instrumentation Nuclear
+title: LIS Nuclear Instrumentation
+imgCaption: Laboratory Information System of Nuclear Instrumentation Labs
 startPeriod: January 2023
 endPeriod: March 2023
 date: 2025-03-01

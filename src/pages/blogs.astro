@@ -1,0 +1,303 @@
+---
+import BlogCardList from "../components/BlogCardList.astro";
+import CommandLine from "../components/CommandLine.astro";
+import GeneralLayout from "../layouts/GeneralLayout.astro";
+
+// Sample blog data - in a real app, this would come from a CMS or API
+const blogs = [
+    {
+        id: 1,
+        title: "Building a Terminal-Style Portfolio with Astro and TailwindCSS",
+        excerpt:
+            "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur adipisci velit... There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...",
+        image: "/placeholder.jpg",
+        tags: ["Database", "Low Level", "SQL", "Server"],
+        additionalTags: 3,
+        year: 2023,
+    },
+    {
+        id: 2,
+        title: "How to Create Pixel-Perfect UI Components for Modern Web Apps",
+        excerpt:
+            "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur adipisci velit... There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...",
+        image: "/placeholder.jpg",
+        tags: ["Database", "PHP", "Postgres"],
+        additionalTags: 3,
+        year: 2023,
+    },
+    {
+        id: 3,
+        title: "Optimizing Performance in JavaScript Applications: A Deep Dive",
+        excerpt:
+            "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur adipisci velit... There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...",
+        image: "/placeholder.jpg",
+        tags: ["Database", "PHP", "Postgres"],
+        additionalTags: 3,
+        year: 2023,
+    },
+    {
+        id: 4,
+        title: "The Future of Web Development: Trends to Watch in 2023",
+        excerpt:
+            "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur adipisci velit... There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...",
+        image: "/placeholder.jpg",
+        tags: ["Database", "PHP", "Postgres"],
+        additionalTags: 3,
+        year: 2023,
+    },
+    {
+        id: 4,
+        title: "Title 4",
+        excerpt:
+            "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur adipisci velit... There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...",
+        image: "/placeholder.jpg",
+        tags: ["Database", "PHP", "Postgres"],
+        additionalTags: 3,
+        year: 2023,
+    },
+    {
+        id: 5,
+        title: "Title 5",
+        excerpt:
+            "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur adipisci velit... There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...",
+        image: "/placeholder.jpg",
+        tags: ["Database", "PHP", "Postgres"],
+        additionalTags: 3,
+        year: 2023,
+    },
+    {
+        id: 6,
+        title: "Title 6",
+        excerpt:
+            "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur adipisci velit... There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...",
+        image: "/placeholder.jpg",
+        tags: ["Database", "PHP", "Postgres"],
+        additionalTags: 3,
+        year: 2023,
+    },
+    {
+        id: 7,
+        title: "Title 7",
+        excerpt:
+            "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur adipisci velit... There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...",
+        image: "/placeholder.jpg",
+        tags: ["Database", "PHP", "Postgres"],
+        additionalTags: 3,
+        year: 2023,
+    },
+    {
+        id: 8,
+        title: "Title 8",
+        excerpt:
+            "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur adipisci velit... There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...",
+        image: "/placeholder.jpg",
+        tags: ["Database", "PHP", "Postgres"],
+        additionalTags: 3,
+        year: 2023,
+    },
+    {
+        id: 9,
+        title: "Title 9",
+        excerpt:
+            "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur adipisci velit... There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...",
+        image: "/placeholder.jpg",
+        tags: ["Database", "PHP", "Postgres"],
+        additionalTags: 3,
+        year: 2023,
+    },
+];
+
+// Get the first blog for initial headline display
+const headlineBlogs = blogs.slice(0, 3);
+const precedentBlogs = blogs.slice(3, 7);
+const restBlogs = blogs.slice(7);
+---
+
+<GeneralLayout title="Blogs" path={"blogs"}>
+    <!-- Command line -->
+    <section class="mb-4">
+        <CommandLine
+            keyword="echo"
+            text="'read all of my thoughts, learning journal, and messy writings. But hey, it\'s all useful tho!'"
+        />
+        <CommandLine keyword="ls -al" text="blogs.log" />
+    </section>
+
+    <!-- Main Content -->
+    <main class="py-4">
+        <!-- Headlines -->
+        <div class="mb-4 grid grid-cols-1 gap-10 lg:grid-cols-2">
+            <!-- Left Side - Headline Carousel -->
+            <div class="flex flex-col gap-6 lg:col-span-1">
+                <!-- Headline Title with Purple Lines -->
+                <div class="">
+                    <div class="h-1 w-full bg-catpuccin-mauve"></div>
+                    <h2 class="py-2 text-center font-pixel text-4xl text-white">
+                        HEADLINE
+                    </h2>
+                    <div class="h-1 w-full bg-catpuccin-mauve"></div>
+                </div>
+
+                <!-- Carousel Container -->
+                <div id="headline-carousel" class="flex-1">
+                    <div>
+                        <div class="h-full border border-catpuccin-mauve p-4">
+                            <!-- Carousel content -->
+                            {
+                                headlineBlogs.map((blog, i) => {
+                                    return (
+                                        <div
+                                            class="headline-slide transition-opacity duration-500 ease-in-out"
+                                            style={
+                                                i === 0
+                                                    ? "opacity: 1"
+                                                    : "opacity: 0; pointer-events: none"
+                                            }
+                                        >
+                                            <div class="mb-4 h-64 w-full bg-gray-200" />
+                                            <a
+                                                class="mb-2 font-pixel text-2xl transition-colors duration-200 hover:text-catpuccin-sky"
+                                                href={blog.url || "#"}
+                                            >
+                                                {blog.title}
+                                            </a>
+                                            <p class="mb-4 text-sm text-gray-400">
+                                                This is the title where xxx xxx
+                                                xxx xxxx and so long text that
+                                                will showed up here.
+                                            </p>
+                                            <div class="flex items-center justify-between">
+                                                <div class="flex space-x-2">
+                                                    {blog.tags
+                                                        .slice(0, 3)
+                                                        .map((tag) => (
+                                                            <span class="border border-gray-600 px-2 py-1 text-xs">
+                                                                {tag}
+                                                            </span>
+                                                        ))}
+                                                    {blog.tags.length > 3 && (
+                                                        <span class="border border-gray-600 px-2 py-1 text-xs">
+                                                            +
+                                                            {blog.tags.length -
+                                                                3}{" "}
+                                                            more
+                                                        </span>
+                                                    )}
+                                                </div>
+                                                <span class="text-gray-400">
+                                                    {blog.year}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    );
+                                })
+                            }
+                            <!-- Carousel Navigation Dots -->
+                            <div class="mt-4 flex justify-center space-x-2">
+                                {
+                                    headlineBlogs.map((_, i) => {
+                                        return (
+                                            <button
+                                                class="carousel-dot h-3 w-3 cursor-pointer border border-catpuccin-mauve bg-catpuccin-mauve transition-colors duration-300"
+                                                data-index={i}
+                                                aria-label={`Go to slide ${i + 1}`}
+                                            />
+                                        );
+                                    })
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Article List -->
+            <div class="flex flex-col justify-between gap-4 lg:col-span-1">
+                {
+                    precedentBlogs.map((blog) => (
+                        <BlogCardList
+                            title={blog.title}
+                            year={blog.year}
+                            tags={blog.tags}
+                            excerpt={blog.excerpt}
+                        />
+                    ))
+                }
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
+            {
+                restBlogs.map((blog) => (
+                    <BlogCardList
+                        title={blog.title}
+                        year={blog.year}
+                        tags={blog.tags}
+                        excerpt={blog.excerpt}
+                    />
+                ))
+            }
+        </div>
+    </main>
+
+    <script>
+        // Carousel functionality
+        document.addEventListener("DOMContentLoaded", () => {
+            const slides =
+                document.querySelectorAll<HTMLDivElement>(".headline-slide");
+            const dots = document.querySelectorAll(".carousel-dot");
+
+            let currentIndex = 0;
+            let interval: number;
+            //
+            // // Function to show a specific slide
+            const showSlide = (index: number) => {
+                // Hide all slides
+                slides.forEach((slide) => {
+                    slide.style.opacity = "0";
+                    slide.style.pointerEvents = "none";
+                    slide.style.display = "none";
+                });
+
+                // Show the selected slide
+                slides[index].style.opacity = "1";
+                slides[index].style.pointerEvents = "auto";
+                slides[index].style.display = "block";
+
+                // Update dots
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle("bg-purple-400", i === index);
+                    dot.classList.toggle("bg-gray-600", i !== index);
+                });
+                //
+                currentIndex = index;
+            };
+
+            // Set up click handlers for dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener("click", () => {
+                    showSlide(index);
+                    resetInterval();
+                });
+            });
+
+            // Auto-advance the carousel
+            const startInterval = () => {
+                interval = setInterval(() => {
+                    const nextIndex = (currentIndex + 1) % slides.length;
+                    showSlide(nextIndex);
+                }, 4000); // Change slide every 5 seconds
+            };
+
+            // Reset the interval when user interacts
+            const resetInterval = () => {
+                clearInterval(interval);
+                startInterval();
+            };
+
+            // Initialize the carousel
+            showSlide(0);
+            startInterval();
+        });
+    </script>
+</GeneralLayout>

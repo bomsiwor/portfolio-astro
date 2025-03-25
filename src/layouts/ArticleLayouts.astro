@@ -9,6 +9,7 @@ type Props = MarkdownLayoutProps<{
     title: string;
     date: string;
     img?: string;
+    imgCaption?: string;
     startPeriod?: string;
     endPeriod?: string;
 }>;
@@ -51,7 +52,7 @@ const fileName = file.split("/").pop() as string;
             <!-- Article grid -->
             <main class="grid grid-cols-2 justify-between">
                 <div
-                    class="prose pr-4 text-white prose-headings:py-2 prose-headings:pl-2 prose-headings:text-white prose-h1:bg-catpuccin-overlay-0 prose-h1:text-3xl prose-h2:bg-catpuccin-blue prose-h2:text-2xl prose-p:text-justify"
+                    class="prose pr-4 text-white prose-headings:py-2 prose-headings:pl-2 prose-headings:text-white prose-h1:bg-catpuccin-overlay-0 prose-h1:text-3xl prose-h2:bg-catpuccin-blue prose-h2:text-2xl prose-h3:bg-catpuccin-teal prose-h3:text-xl prose-h3:text-catpuccin-base prose-p:text-justify prose-p:text-lg"
                 >
                     <slot />
                 </div>
@@ -60,13 +61,13 @@ const fileName = file.split("/").pop() as string;
                     <img
                         class="max-h-[360px] w-full border border-catpuccin-mauve object-cover p-4"
                         src={frontmatter.img || "/article-default.jpg"}
-                        alt={frontmatter.title}
+                        alt={frontmatter.imgCaption || frontmatter.title}
                     />
 
                     <div
                         class="mt-2 bg-catpuccin-mauve p-3 text-catpuccin-base"
                     >
-                        <p>{frontmatter.title}</p>
+                        <p>{frontmatter.imgCaption || frontmatter.title}</p>
                     </div>
                 </div>
             </main>
