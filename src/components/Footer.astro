@@ -1,7 +1,19 @@
 ---
+import CommandLine from "./CommandLine";
+
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="my-4 text-center text-sm font-light">
-    <p>Build with your loves and affection. Bomsiwor {currentYear} 💓🔥</p>
+<footer class="mt-12 flex items-end justify-between">
+    <div>
+        <CommandLine text="thank you for watching" />
+        <CommandLine text="just reach me out to create interesting things" />
+        <CommandLine text="made with love & passions." />
+    </div>
+
+    <div class="mt-4 flex justify-end">
+        <div class="bg-catpuccin-red px-6 py-2 text-white">
+            bomsiwor@gmail.com | {currentYear}
+        </div>
+    </div>
 </footer>

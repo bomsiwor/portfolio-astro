@@ -1,217 +1,90 @@
 ---
 import "../styles/global.css";
-import WorksCard from "../components/front-page/WorksCard.astro";
+import TerminalWindow from "../components/TerminalWindow.tsx";
+import DoubleStackButton from "../components/DoubleStackButton.tsx";
+import PixelatedHello from "../components/PixelatedHello.tsx";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import FooterRay from "../components/FooterRay.astro";
-import GithubIcon from "../components/icons/GithubIcon.astro";
-import ReactIcon from "../components/icons/ReactIcon.astro";
-import GolangIcon from "../components/icons/GolangIcon.astro";
-import TSIcon from "../components/icons/TSIcon.astro";
-import PHPIcon from "../components/icons/PHPIcon.astro";
-import TwitterIcon from "../components/icons/TwitterIcon.astro";
 ---
 
-<html lang="en" class="bg-lighter-50">
+<html lang="en">
     <head>
         <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="viewport" content="width=device-width" />
-        <meta name="generator" content={Astro.generator} />
-        <title>Portofolio Bomsiwor</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Bomsiwor Portfolio</title>
     </head>
-    <body class="w-[100vw] overflow-x-hidden px-2 font-bricol">
-        <!-- Header Section -->
-        <Header />
+    <body class="min-h-screen bg-[#1a1b26] p-8 font-pixel text-white">
+        <div class="mx-auto max-w-7xl">
+            <Header />
 
-        <!-- Hero Section -->
-        <section id="hero" class="min-h-[110vh]">
-            <div
-                class="hero relative left-1/2 top-3 min-h-[65vh] w-[95vw] max-w-screen-sm -translate-x-1/2 rounded-md border border-primary-500 bg-gradient-to-t from-primary-50 to-primary-200 px-10 pt-10 shadow-md transition-all duration-200 hover:shadow-lg sm:max-w-[90vw]"
-            >
-                <h2 class="text-center text-3xl font-semibold text-slate-700">
-                    This is
-                </h2>
-
-                <div class="mx-auto w-[90%] break-words text-center">
-                    <h1 class="text-darker-950" id="name"></h1>
-
-                    <p class="text-darker-950">
-                        an Alien trapped on software engineering world.
-                    </p>
-                    <p class="text-xs">(still brutally curious and learn)</p>
-                </div>
-
-                <div
-                    class="absolute left-1/2 top-1/2 flex h-[600px] w-[75vw] -translate-x-1/2 flex-col gap-4 sm:w-[300px]"
+            <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                <!-- Profile Terminal Window -->
+                <TerminalWindow
+                    title="#!/bin/bash"
+                    email="bomsiwor@gmail.com"
+                    client:load
                 >
-                    <div
-                        class="photo-card flex h-[400px] flex-col rounded-xl bg-white p-4 shadow-lg backdrop-blur-sm"
-                    >
-                        <div
-                            class="h-[200px] w-full overflow-hidden rounded-lg bg-red-600"
-                        >
-                            <img
-                                class="h-full w-full object-cover"
-                                src="/photo-light.webp"
-                                alt="Photo light"
-                            />
-                        </div>
+                    <div class="flex h-full flex-col justify-between">
+                        <div>
+                            <div class="mb-6 h-32 w-32 bg-gray-200"></div>
 
-                        <div class="mt-2 w-full grow">
-                            <p class="text-lg font-bold text-darker-950">
-                                Dimas Febrian Bomanarakasura
+                            <h2 class="mb-2 text-4xl font-bold text-white">
+                                sono <span class="text-catpuccin-sky">Boma</span
+                                >narakasura!
+                            </h2>
+                            <p class="mb-6 text-catpuccin-sapphire">
+                                Software engineer
                             </p>
-                            <p class="text-xs text-black">Backend Developer</p>
+
+                            <p
+                                class="mb-6 leading-relaxed text-catpuccin-sapphire"
+                            >
+                                I do create expressive things in browser and
+                                server. Do I care about performances? Yes.
+                            </p>
+
+                            <div>
+                                <DoubleStackButton client:load icon="📑">
+                                    Man page
+                                </DoubleStackButton>
+                            </div>
                         </div>
 
-                        <div class="flex justify-end gap-1">
-                            <GolangIcon width="2em" class="fill-darker-950" />
-                            <PHPIcon width="2em" class="fill-darker-950" />
-                            <TSIcon width="2em" class="fill-darker-950" />
-                            <TwitterIcon
-                                width="24px"
-                                class="stroke-darker-950"
+                        <div class="mt-10 flex items-end justify-between">
+                            <div>
+                                <p class="mb-4">More about me</p>
+
+                                <div class="flex flex-row gap-[30px]">
+                                    <DoubleStackButton client:load icon="🎨">
+                                        projects
+                                    </DoubleStackButton>
+
+                                    <DoubleStackButton client:load icon="🖍️">
+                                        blogs
+                                    </DoubleStackButton>
+
+                                    <DoubleStackButton client:load icon="🌈">
+                                        sandbox
+                                    </DoubleStackButton>
+                                </div>
+                            </div>
+
+                            <img
+                                src="/earth.png"
+                                alt="Earth"
+                                class="h-20 w-20 cursor-none"
                             />
                         </div>
                     </div>
+                </TerminalWindow>
 
-                    <div>
-                        <button
-                            class="click-shrink mb-2 w-full rounded border border-lighter-300 bg-lighter-50 p-2 text-lighter-900"
-                            >Explore about me Effortly 📚</button
-                        >
-
-                        <button
-                            class="click-shrink relative mb-2 w-full rounded border border-darker-950 bg-secondary-950 p-2 text-sm text-white"
-                        >
-                            <!-- Ping Indicator -->
-                            <div
-                                class="absolute right-0 top-0 -translate-y-1/2 translate-x-1/2"
-                            >
-                                <span class="relative flex h-3 w-3">
-                                    <span
-                                        class="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary-400 opacity-75"
-                                    ></span>
-                                    <span
-                                        class="relative inline-flex h-3 w-3 rounded-full bg-secondary-500"
-                                    ></span>
-                                </span>
-                            </div>
-                            <p>I'm lazy, ask AI about this guy 🤖</p>
-                        </button>
-                    </div>
-                </div>
+                <!-- Hello World Terminal Window -->
+                <TerminalWindow title="#!/bin/bash" client:load>
+                    <PixelatedHello client:load />
+                </TerminalWindow>
             </div>
-        </section>
 
-        <section class="p-2"></section>
-
-        <!-- About section -->
-        <section id="about" class="p-2">
-            <h1 class="text-darker-950">About me and works</h1>
-
-            <div class="text-justify text-sm text-slate-700">
-                <p class="mt-2">
-                    Simply, i am a web backend developer. Ordinarily work 7-4.
-                    Always curious and learn from everything i've read about
-                    software engineering. Also like to writing (when i have
-                    spare times)
-                </p>
-
-                <p class="mt-2">
-                    You should believe that i have <b>Nuclear & physics</b> background!
-                </p>
-            </div>
-        </section>
-
-        <!-- Menu Section -->
-        <section id="menu" class="flex flex-col gap-4 p-2">
-            <WorksCard
-                title="Project Portfolio"
-                subtitle="My Handed over projects."
-            >
-                <GithubIcon width="40px" height="40px" slot="icon-first" />
-                <p slot="icon-last" class="col-span-1">icon</p>
-            </WorksCard>
-
-            <WorksCard
-                title="Blogs"
-                subtitle="Read my written article about anything"
-            >
-                <GithubIcon width="40px" height="40px" slot="icon-first" />
-                <p slot="icon-last" class="col-span-1">icon</p>
-            </WorksCard>
-
-            <WorksCard title="Playground" subtitle="Im trying everything here.">
-                <GithubIcon width="40px" height="40px" slot="icon-first" />
-                <p slot="icon-last" class="col-span-1">icon</p>
-            </WorksCard>
-        </section>
-
-        <!-- Footer Section -->
-        <Footer />
-
-        <!-- <div -->
-        <!--     class="absolute -right-32 top-1/2 -z-10 aspect-square w-[480px] rounded-full bg-primary-600/50 opacity-15 blur-2xl" -->
-        <!-- > -->
-        <!-- </div> -->
-
-        <!-- <div class="fixed right-0 -translate-y-[50%]"> -->
-        <!--     <ReactIcon width="300px" height="300px" /> -->
-        <!-- </div> -->
-
-        <FooterRay />
-
-        <script>
-            import Typed from "typed.js";
-
-            const typed = new Typed("#name", {
-                strings: ["Bomanarakasura.", "Bomaaa.", "@Bomsiwor"],
-                typeSpeed: 50,
-                backSpeed: 250,
-                smartBackspace: true,
-                loop: true,
-                loopCount: 3,
-                showCursor: false,
-            });
-        </script>
-
-        <script is:inline>
-            const theme = (() => {
-                if (
-                    typeof localStorage !== undefined &&
-                    localStorage.getItem("theme")
-                ) {
-                    return localStorage.getItem("theme") ?? "light";
-                }
-
-                if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-                    return "dark";
-                } else {
-                    return "light";
-                }
-            })();
-
-            if (theme === "light") {
-                document.documentElement.classList.remove("dark");
-            } else {
-                document.documentElement.classList.add("dark");
-            }
-
-            window.localStorage.setItem("theme", theme);
-
-            const handleToggleTheme = () => {
-                const element = document.documentElement;
-                element.classList.toggle("dark");
-
-                const isDark = element.classList.contains("dark");
-                window.localStorage.setItem("theme", isDark ? "dark" : "light");
-            };
-
-            document
-                .getElementById("theme-toggler")
-                .addEventListener("click", handleToggleTheme);
-        </script>
+            <Footer />
+        </div>
     </body>
 </html>
