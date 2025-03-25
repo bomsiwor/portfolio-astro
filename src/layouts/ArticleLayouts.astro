@@ -50,14 +50,14 @@ const fileName = file.split("/").pop() as string;
             </div>
 
             <!-- Article grid -->
-            <main class="grid grid-cols-2 justify-between">
+            <main class="grid grid-cols-1 justify-between lg:grid-cols-2">
                 <div
-                    class="prose pr-4 text-white prose-headings:py-2 prose-headings:pl-2 prose-headings:text-white prose-h1:bg-catpuccin-overlay-0 prose-h1:text-3xl prose-h2:bg-catpuccin-blue prose-h2:text-2xl prose-h3:bg-catpuccin-teal prose-h3:text-xl prose-h3:text-catpuccin-base prose-p:text-justify prose-p:text-lg"
+                    class="prose max-w-full pr-4 text-white prose-headings:py-2 prose-headings:pl-2 prose-headings:text-white prose-h1:bg-catpuccin-overlay-0 prose-h1:text-3xl prose-h2:bg-catpuccin-blue prose-h2:text-2xl prose-h3:bg-catpuccin-teal prose-h3:text-xl prose-h3:text-catpuccin-base prose-p:text-justify prose-p:indent-12 prose-p:text-lg"
                 >
                     <slot />
                 </div>
 
-                <div class="w-full">
+                <div class="order-first mb-4 w-full lg:order-last">
                     <img
                         class="max-h-[360px] w-full border border-catpuccin-mauve object-cover p-4"
                         src={frontmatter.img || "/article-default.jpg"}
