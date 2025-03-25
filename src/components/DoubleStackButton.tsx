@@ -2,8 +2,14 @@ import { useState, type PropsWithChildren, type ReactNode } from "react";
 
 interface Props extends PropsWithChildren {
     icon?: string;
+    url?: string;
 }
-export default function DoubleStackButton({ children, icon }: Props) {
+
+export default function DoubleStackButton({
+    children,
+    icon,
+    url = "#",
+}: Props) {
     const [isHovered, setIsHovered] = useState(false);
     return (
         <div
@@ -18,16 +24,17 @@ export default function DoubleStackButton({ children, icon }: Props) {
             </div>
 
             {/* Top rectangle (animates down on hover) */}
-            <div
+            <a
                 className={`absolute left-0 top-0 flex items-center justify-start gap-2 border border-catpuccin-text bg-[#1a1b26] px-4 py-2 text-white transition-all duration-200 ${
                     isHovered
                         ? "translate-y-0 opacity-0"
                         : "-translate-x-1 -translate-y-1"
                 }`}
+                href={url}
             >
                 {icon && <span>{icon}</span>}
                 <div>{children}</div>
-            </div>
+            </a>
         </div>
     );
 }

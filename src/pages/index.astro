@@ -1,90 +1,78 @@
 ---
-import "../styles/global.css";
 import TerminalWindow from "../components/TerminalWindow.tsx";
 import DoubleStackButton from "../components/DoubleStackButton.tsx";
 import PixelatedHello from "../components/PixelatedHello.tsx";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import GeneralLayout from "../layouts/GeneralLayout.astro";
 ---
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Bomsiwor Portfolio</title>
-    </head>
-    <body class="min-h-screen bg-[#1a1b26] p-8 font-pixel text-white">
-        <div class="mx-auto max-w-7xl">
-            <Header />
+<GeneralLayout path={""}>
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <!-- Profile Terminal Window -->
+        <TerminalWindow
+            title="#!/bin/bash"
+            email="bomsiwor@gmail.com"
+            client:load
+        >
+            <div class="flex h-full flex-col justify-between">
+                <div>
+                    <div class="mb-6 h-32 w-32 bg-gray-200"></div>
 
-            <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-                <!-- Profile Terminal Window -->
-                <TerminalWindow
-                    title="#!/bin/bash"
-                    email="bomsiwor@gmail.com"
-                    client:load
-                >
-                    <div class="flex h-full flex-col justify-between">
-                        <div>
-                            <div class="mb-6 h-32 w-32 bg-gray-200"></div>
+                    <h2 class="mb-2 text-4xl font-bold text-white">
+                        sono <span class="text-catpuccin-sky">Boma</span
+                        >narakasura!
+                    </h2>
+                    <p class="mb-6 text-catpuccin-sapphire">
+                        Software engineer
+                    </p>
 
-                            <h2 class="mb-2 text-4xl font-bold text-white">
-                                sono <span class="text-catpuccin-sky">Boma</span
-                                >narakasura!
-                            </h2>
-                            <p class="mb-6 text-catpuccin-sapphire">
-                                Software engineer
-                            </p>
+                    <p class="mb-6 leading-relaxed text-catpuccin-sapphire">
+                        I do create expressive things in browser and server. Do
+                        I care about performances? Yes.
+                    </p>
 
-                            <p
-                                class="mb-6 leading-relaxed text-catpuccin-sapphire"
+                    <div>
+                        <DoubleStackButton client:load icon="📑">
+                            Man page
+                        </DoubleStackButton>
+                    </div>
+                </div>
+
+                <div class="mt-10 flex items-end justify-between">
+                    <div>
+                        <p class="mb-4">More about me</p>
+
+                        <div class="flex flex-row gap-[30px]">
+                            <DoubleStackButton
+                                client:load
+                                icon="🎨"
+                                url="/projects"
                             >
-                                I do create expressive things in browser and
-                                server. Do I care about performances? Yes.
-                            </p>
+                                projects
+                            </DoubleStackButton>
 
-                            <div>
-                                <DoubleStackButton client:load icon="📑">
-                                    Man page
-                                </DoubleStackButton>
-                            </div>
-                        </div>
+                            <DoubleStackButton client:load icon="🖍️">
+                                blogs
+                            </DoubleStackButton>
 
-                        <div class="mt-10 flex items-end justify-between">
-                            <div>
-                                <p class="mb-4">More about me</p>
-
-                                <div class="flex flex-row gap-[30px]">
-                                    <DoubleStackButton client:load icon="🎨">
-                                        projects
-                                    </DoubleStackButton>
-
-                                    <DoubleStackButton client:load icon="🖍️">
-                                        blogs
-                                    </DoubleStackButton>
-
-                                    <DoubleStackButton client:load icon="🌈">
-                                        sandbox
-                                    </DoubleStackButton>
-                                </div>
-                            </div>
-
-                            <img
-                                src="/earth.png"
-                                alt="Earth"
-                                class="h-20 w-20 cursor-none"
-                            />
+                            <DoubleStackButton client:load icon="🌈">
+                                sandbox
+                            </DoubleStackButton>
                         </div>
                     </div>
-                </TerminalWindow>
 
-                <!-- Hello World Terminal Window -->
-                <TerminalWindow title="#!/bin/bash" client:load>
-                    <PixelatedHello client:load />
-                </TerminalWindow>
+                    <img
+                        src="/earth.png"
+                        alt="Earth"
+                        class="h-20 w-20 cursor-none"
+                    />
+                </div>
             </div>
+        </TerminalWindow>
 
-            <Footer />
-        </div>
-    </body>
-</html>
+        <!-- Hello World Terminal Window -->
+        <TerminalWindow title="#!/bin/bash" client:load>
+            <PixelatedHello client:load />
+        </TerminalWindow>
+    </div>
+</GeneralLayout>

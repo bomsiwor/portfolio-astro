@@ -1,0 +1,14 @@
+---
+interface Props {
+    keyword?: string;
+    text: string;
+}
+
+const { keyword, text } = Astro.props;
+---
+
+<div class="mb-1 flex items-center">
+    <span class="mr-2 text-catpuccin-teal">root &gt;</span>
+    {keyword && <span class="mr-2 text-catpuccin-peach">{keyword}</span>}
+    <span class="text-catpuccin-text">{text}</span>
+</div>

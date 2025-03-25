@@ -1,14 +1,17 @@
 ---
-import CommandLine from "./CommandLine";
+import CommandLine from "./CommandLine.astro";
 
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="mt-12 flex items-end justify-between">
     <div>
-        <CommandLine text="thank you for watching" />
-        <CommandLine text="just reach me out to create interesting things" />
-        <CommandLine text="made with love & passions." />
+        <CommandLine keyword="echo" text="'thank you for watching'" />
+        <CommandLine
+            keyword="echo"
+            text="'just reach me out to create interesting things'"
+        />
+        <CommandLine keyword="echo" text="'made with love & passions.'" />
     </div>
 
     <div class="mt-4 flex justify-end">

@@ -1,0 +1,106 @@
+---
+// ProjectCard.astro
+interface Props {
+    title: string;
+    subtitle: string;
+    imageUrl?: string;
+    year: string | number;
+    teamSize: number;
+}
+
+const {
+    title,
+    subtitle,
+    imageUrl = "/egg.png",
+    year,
+    teamSize = 1,
+} = Astro.props;
+
+// Truncate subtitle if it's too long
+const maxSubtitleLength = 64;
+const truncatedSubtitle =
+    subtitle.length > maxSubtitleLength
+        ? subtitle.substring(0, maxSubtitleLength) + "..."
+        : subtitle;
+
+// Team size badge text
+const teamBadgeText = teamSize === 1 ? "solo" : `${teamSize} person`;
+---
+
+<div
+    class="w-full max-w-sm overflow-hidden rounded-sm border border-catpuccin-sapphire"
+>
+    <!-- Terminal Header -->
+    <div
+        class="flex items-center justify-between border-b border-catpuccin-sapphire p-3"
+    >
+        <div class="flex space-x-2">
+            <div class="h-3 w-3 rounded-full bg-green-400"></div>
+            <div class="h-3 w-3 rounded-full bg-yellow-400"></div>
+            <div class="h-3 w-3 rounded-full bg-purple-400"></div>
+        </div>
+
+        <div>
+            {year}
+        </div>
+    </div>
+
+    <!-- Project Content -->
+    <div class="relative p-4">
+        <!-- Team Size Badge -->
+        <div
+            class="absolute left-4 top-4 cursor-default border border-catpuccin-sky px-4 py-1 text-sm text-catpuccin-sky hover:bg-catpuccin-sky hover:text-catpuccin-base"
+        >
+            {teamBadgeText}
+        </div>
+
+        <!-- Color Swatches -->
+        <div class="absolute right-4 top-4 flex space-x-1">
+            <div class="h-6 w-6 bg-sky-400"></div>
+            <div class="h-6 w-6 bg-pink-400"></div>
+            <div class="h-6 w-6 bg-red-400"></div>
+            <div class="h-6 w-6 bg-pink-200"></div>
+        </div>
+
+        <!-- Project Image -->
+        <div class="mb-4 mt-12 flex h-48 w-full items-center justify-center">
+            {
+                imageUrl ? (
+                    <img
+                        src={imageUrl || "/placeholder.svg"}
+                        alt={title + " " + "Thumbnail"}
+                        class="max-h-full object-contain"
+                    />
+                ) : (
+                    <div class="flex h-full w-full items-center justify-center bg-gray-200">
+                        <span class="text-gray-400">Image Placeholder</span>
+                    </div>
+                )
+            }
+        </div>
+
+        <!-- Project Title -->
+        <h3
+            class="mb-2 mt-4 cursor-pointer text-center text-xl text-catpuccin-text transition duration-200 hover:text-white"
+        >
+            {title}
+        </h3>
+
+        <!-- Project Subtitle -->
+        <p
+            class="curser-default mb-6 text-center text-sm text-catpuccin-subtext-0"
+        >
+            {truncatedSubtitle}
+        </p>
+
+        <!-- Read Detail Button -->
+        <div class="absolute bottom-0 right-0 flex justify-end">
+            <a
+                href="#"
+                class="inline-block border border-catpuccin-blue bg-catpuccin-blue px-4 py-2 text-sm text-catpuccin-base transition-colors duration-200 hover:bg-catpuccin-base hover:text-catpuccin-sky"
+            >
+                read detail &gt;&gt;&gt;
+            </a>
+        </div>
+    </div>
+</div>

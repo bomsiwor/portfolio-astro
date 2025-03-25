@@ -1,0 +1,30 @@
+---
+import "../styles/global.css";
+
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+    title?: string;
+    path: string | string[];
+}
+
+const { title = "Bomsiwor Portfolio", path } = Astro.props;
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{title}</title>
+    </head>
+    <body class="min-h-screen bg-[#1a1b26] p-8 font-pixel text-white">
+        <div class="mx-auto max-w-7xl">
+            <Header path={path} />
+
+            <slot />
+
+            <Footer />
+        </div>
+    </body>
+</html>

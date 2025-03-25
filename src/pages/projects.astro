@@ -1,0 +1,46 @@
+---
+import CommandLine from "../components/CommandLine.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import GeneralLayout from "../layouts/GeneralLayout.astro";
+---
+
+<GeneralLayout path={"projects"}>
+    <!-- Command line -->
+    <section>
+        <CommandLine
+            keyword="echo"
+            text="'list of all my duties through years'"
+        />
+        <CommandLine keyword="ls -al" text="project.log" />
+    </section>
+
+    <section class="grid grid-cols-3 gap-4">
+        <ProjectCard
+            title="LIS - Nuclear Instrumentation Labs Management System"
+            subtitle="This is a project that handle Nuclear Instrumentation Laboratory Information System"
+            year={2023}
+            teamSize={1}
+        />
+
+        <ProjectCard
+            title="LIS - Nuclear Instrumentation Labs Management System"
+            subtitle="This is a project that handle Nuclear Instrumentation Laboratory Information System"
+            year={2023}
+            teamSize={1}
+        />
+
+        <ProjectCard
+            title="LIS - Nuclear Instrumentation Labs Management System"
+            subtitle="This is a project that handle Nuclear Instrumentation Laboratory Information System"
+            year={2023}
+            teamSize={1}
+        />
+
+        <ProjectCard
+            title="LIS - Nuclear Instrumentation Labs Management System"
+            subtitle="This is a project that handle Nuclear Instrumentation Laboratory Information System"
+            year={2023}
+            teamSize={1}
+        />
+    </section>
+</GeneralLayout>
