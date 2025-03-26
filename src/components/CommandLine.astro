@@ -7,8 +7,10 @@ interface Props {
 const { keyword, text } = Astro.props;
 ---
 
-<div class="mb-1 flex items-center">
-    <span class="mr-2 text-catpuccin-teal">root &gt;</span>
-    {keyword && <span class="mr-2 text-catpuccin-peach">{keyword}</span>}
+<div
+    class="mb-1 flex select-none items-start gap-2 text-sm lg:items-center lg:text-base"
+>
+    <span class="shrink-0 text-catpuccin-teal">root &gt;</span>
+    {keyword && <span class="text-catpuccin-peach">{keyword}</span>}
     <span class="text-catpuccin-text">{text}</span>
 </div>

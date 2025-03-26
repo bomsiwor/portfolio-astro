@@ -38,11 +38,13 @@ import GeneralLayout from "../layouts/GeneralLayout.astro";
                     </div>
                 </div>
 
-                <div class="mt-10 flex items-end justify-between">
+                <div class="mt-10 flex w-full items-end justify-between">
                     <div>
                         <p class="mb-4">More about me</p>
 
-                        <div class="flex flex-row gap-[30px]">
+                        <div
+                            class="flex w-full flex-col gap-4 lg:w-auto lg:flex-row lg:gap-[30px]"
+                        >
                             <DoubleStackButton
                                 client:load
                                 icon="🎨"
@@ -68,14 +70,14 @@ import GeneralLayout from "../layouts/GeneralLayout.astro";
                     <img
                         src="/earth.png"
                         alt="Earth"
-                        class="h-20 w-20 cursor-none"
+                        class="hidden h-20 w-20 cursor-none lg:block"
                     />
                 </div>
             </div>
         </TerminalWindow>
 
         <!-- Hello World Terminal Window -->
-        <TerminalWindow title="#!/bin/bash" client:load>
+        <TerminalWindow title="#!/bin/bash" client:only="vue">
             <PixelatedHello client:load />
         </TerminalWindow>
     </div>

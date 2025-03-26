@@ -4,7 +4,9 @@ import CommandLine from "./CommandLine.astro";
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="mt-12 flex items-end justify-between">
+<footer
+    class="mt-12 flex flex-col items-center justify-between lg:flex-row lg:items-end"
+>
     <div>
         <CommandLine keyword="echo" text="'thank you for watching'" />
         <CommandLine

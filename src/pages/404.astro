@@ -1,11 +1,149 @@
 ---
 import "../styles/global.css";
 import ErrorLayouts from "../layouts/ErrorLayouts.astro";
+import TerminalWindow from "../components/TerminalWindow";
+import CommandLine from "../components/CommandLine.astro";
+
+const url = Astro.url.pathname.slice(1);
 ---
 
-<ErrorLayouts
-    pageTitle="Not Found"
-    title="You're lost"
-    subtitle="We can't find what you're search."
-    code="404"
-/>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>404 - Page Not Found</title>
+        <style>
+            @keyframes blink {
+                0%,
+                100% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0;
+                }
+            }
+
+            .cursor-blink {
+                animation: blink 1.2s infinite;
+            }
+
+            .terminal-window {
+                border: 1px solid theme("colors.catpuccin.blue");
+                border-radius: 4px;
+                overflow: hidden;
+            }
+
+            .terminal-header {
+                background-color: theme("colors.catpuccin.surface-0");
+                border-bottom: 1px solid theme("colors.catpuccin.blue");
+                padding: 8px 16px;
+                display: flex;
+                align-items: center;
+            }
+
+            .terminal-dot {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                margin-right: 8px;
+            }
+        </style>
+    </head>
+    <body class="min-h-screen bg-catpuccin-base p-8 font-pixel">
+        <div class="flex justify-center">
+            <TerminalWindow title="error.log">
+                <CommandLine keyword="find" text={url} />
+
+                <!-- Error Output -->
+                <div class="mb-8 pl-6">
+                    <div class="text-catpuccin-red">Error: Path not found</div>
+                </div>
+
+                <div class="mb-8 flex flex-col items-center gap-8 md:flex-row">
+                    <div class="w-full md:w-1/2">
+                        <!-- 404 Number -->
+                        <div
+                            class="mb-4 text-center font-pixel text-8xl text-catpuccin-mauve md:text-left md:text-9xl"
+                        >
+                            404
+                        </div>
+
+                        <!-- Error Message -->
+                        <div class="mb-6">
+                            <CommandLine
+                                keyword="echo"
+                                text="'page not found'"
+                            />
+                            <div class="mb-2 pl-6 text-catpuccin-text">
+                                The requested page does not exist or has been
+                                moved.
+                            </div>
+                            <div
+                                class="mb-2 flex flex-nowrap items-start gap-2 whitespace-nowrap"
+                            >
+                                <span class="shrink-0 text-catpuccin-teal"
+                                    >root &gt;</span
+                                >
+                                <span class="cursor-blink text-catpuccin-text"
+                                    >_</span
+                                >
+                            </div>
+                        </div>
+
+                        <!-- Back Button -->
+                        <CommandLine keyword="cd" text=".." />
+
+                        <div class="mt-4 text-center lg:pl-6 lg:text-left">
+                            <button
+                                id="back-button"
+                                class="border border-catpuccin-blue bg-catpuccin-surface-0 px-4 py-2 text-catpuccin-text transition-colors hover:bg-catpuccin-surface-1"
+                            >
+                                Return to previous page
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Image Placeholder -->
+                    <div
+                        class="flex h-48 w-full items-center justify-center border border-catpuccin-overlay-0 bg-catpuccin-surface-0 md:h-64 md:w-1/2"
+                    >
+                        <div class="text-catpuccin-overlay-1">404 Image</div>
+                    </div>
+                </div>
+
+                <div class="mt-4 border-t border-catpuccin-surface-1 pt-4">
+                    <CommandLine keyword="help" text="" />
+                    <div class="pl-6 text-catpuccin-text">
+                        <ul class="list-inside list-disc space-y-1">
+                            <li>Check the URL for typos</li>
+                            <li>
+                                Return to the <a
+                                    href="/"
+                                    class="text-catpuccin-blue hover:underline"
+                                    >homepage</a
+                                >
+                            </li>
+                            <li>
+                                Contact support if you believe this is an error
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div></div>
+            </TerminalWindow>
+        </div>
+
+        <script>
+            // Handle back button click
+            document
+                .getElementById("back-button")
+                ?.addEventListener("click", () => {
+                    if (window.history.length > 1) {
+                        window.history.back();
+                    } else {
+                        window.location.href = "/";
+                    }
+                });
+        </script>
+    </body>
+</html>
