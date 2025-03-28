@@ -9,16 +9,12 @@ import GeneralLayout from "../layouts/GeneralLayout.astro";
 <GeneralLayout path={""}>
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <!-- Profile Terminal Window -->
-        <TerminalWindow
-            title="#!/bin/bash"
-            email="bomsiwor@gmail.com"
-            client:load
-        >
+        <TerminalWindow title="#!/bin/bash" email="bomsiwor@gmail.com">
             <div class="flex h-full flex-col justify-between">
                 <div>
                     <div class="mb-6 h-32 w-32 bg-gray-200"></div>
 
-                    <h2 class="mb-2 text-4xl font-bold text-white">
+                    <h2 class="mb-2 text-3xl font-bold text-white lg:text-4xl">
                         sono <span class="text-catpuccin-sky">Boma</span
                         >narakasura!
                     </h2>
@@ -27,23 +23,25 @@ import GeneralLayout from "../layouts/GeneralLayout.astro";
                     </p>
 
                     <p class="mb-6 leading-relaxed text-catpuccin-sapphire">
-                        I do create expressive things in browser and server. Do
-                        I care about performances? Yes.
+                        I do create expressive software in browser and server.
+                        Do I care about performances? Yes, passionately!
                     </p>
 
                     <div>
-                        <DoubleStackButton client:load icon="📑">
+                        <DoubleStackButton client:load icon="📑" url="about">
                             Man page
                         </DoubleStackButton>
                     </div>
                 </div>
 
-                <div class="mt-10 flex w-full items-end justify-between">
+                <div
+                    class="mt-10 flex w-full flex-col lg:flex-row lg:items-end lg:justify-between"
+                >
                     <div>
                         <p class="mb-4">More about me</p>
 
                         <div
-                            class="flex w-full flex-col gap-4 lg:w-auto lg:flex-row lg:gap-[30px]"
+                            class="flex flex-col gap-4 lg:w-auto lg:flex-row lg:gap-[30px]"
                         >
                             <DoubleStackButton
                                 client:load
@@ -61,9 +59,9 @@ import GeneralLayout from "../layouts/GeneralLayout.astro";
                                 blogs
                             </DoubleStackButton>
 
-                            <DoubleStackButton client:load icon="🌈">
-                                sandbox
-                            </DoubleStackButton>
+                            <!-- <DoubleStackButton client:load icon="🌈"> -->
+                            <!--     sandbox -->
+                            <!-- </DoubleStackButton> -->
                         </div>
                     </div>
 
@@ -77,8 +75,10 @@ import GeneralLayout from "../layouts/GeneralLayout.astro";
         </TerminalWindow>
 
         <!-- Hello World Terminal Window -->
-        <TerminalWindow title="#!/bin/bash" client:only="vue">
-            <PixelatedHello client:load />
-        </TerminalWindow>
+        <div class="hidden lg:block">
+            <TerminalWindow title="#!/bin/bash">
+                <PixelatedHello client:load />
+            </TerminalWindow>
+        </div>
     </div>
 </GeneralLayout>

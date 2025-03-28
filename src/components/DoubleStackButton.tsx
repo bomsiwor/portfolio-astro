@@ -25,7 +25,7 @@ export default function DoubleStackButton({
 
             {/* Top rectangle (animates down on hover) */}
             <a
-                className={`absolute left-0 top-0 flex items-center justify-start gap-2 border border-catpuccin-text bg-[#1a1b26] px-4 py-2 text-white transition-all duration-200 ${
+                className={`absolute left-0 top-0 flex w-full items-center justify-start gap-2 border border-catpuccin-text bg-[#1a1b26] px-4 py-2 text-white transition-all duration-200 ${
                     isHovered
                         ? "translate-y-0 opacity-0"
                         : "-translate-x-1 -translate-y-1"

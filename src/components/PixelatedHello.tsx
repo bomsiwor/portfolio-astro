@@ -50,7 +50,9 @@ export default function PixelatedHello() {
             </div>
 
             <div className="">
-                <DoubleStackButton icon="🤖">Ask AI</DoubleStackButton>
+                <DoubleStackButton icon="🤖">
+                    Ask AI (coming soon)
+                </DoubleStackButton>
             </div>
         </div>
     );
