@@ -1,0 +1,113 @@
+---
+import CommandLine from "@components/CommandLine.astro";
+import DoubleStackButton from "@components/DoubleStackButton";
+import GeneralLayout from "@layout/GeneralLayout.astro";
+import ExperienceTable from "@components/ExperienceTable.astro";
+import socials from "@data/socials";
+---
+
+<style>
+    h1 {
+        @apply my-4 text-center text-2xl lg:text-4xl;
+    }
+
+    section {
+        @apply my-6;
+    }
+
+    .overview-divider {
+        @apply my-2 h-1 w-full bg-catpuccin-teal;
+    }
+</style>
+
+<GeneralLayout path={"man"} title="About me">
+    <CommandLine keyword="help -v" text="bomanarakasura" />
+
+    <!-- Ask AI Banner -->
+    <div
+        class="flex flex-col items-center justify-between gap-2 bg-catpuccin-blue px-8 py-4 md:flex-row"
+    >
+        <p class="text-catpuccin-base">too lazy to read?</p>
+
+        <DoubleStackButton client:load icon="🤖"> Ask AI </DoubleStackButton>
+    </div>
+
+    <!-- Overview -->
+    <section id="overview">
+        <h1>about me</h1>
+
+        <div class="mt-9 flex flex-col justify-between gap-4 lg:flex-row">
+            <!-- Short Story -->
+            <div
+                class="text-center text-sm lg:w-[25vw] lg:text-right lg:text-base"
+            >
+                <p>
+                    A Nuclear Engineering survivor that turned into code warrior
+                    —I build software that survives the apocalypse
+                </p>
+                <div class="overview-divider"></div>
+                <p>
+                    Obsessed with low-level, DevOps, and turning caffeine into
+                    bulletproof systems. Every year, I level up like it’s RPG
+                    grinding season
+                </p>
+
+                <div class="overview-divider"></div>
+                <p>
+                    I don’t just ship tech—I ship value that makes businesses go
+                    "OH. DAMN."
+                </p>
+            </div>
+            <!-- Photo -->
+            <div class="order-first flex justify-center lg:order-1 lg:w-[25vw]">
+                <div class="aspect-square w-full bg-catpuccin-blue lg:w-[25vw]">
+                </div>
+            </div>
+
+            <!-- Social links -->
+            <div class="lg:order-2 lg:w-[25vw]">
+                <p class="mb-4 text-center lg:text-left">
+                    you can reach me via
+                </p>
+
+                <div class="flex flex-col gap-4">
+                    {
+                        socials.map((social) => (
+                            <DoubleStackButton client:load url={social.url}>
+                                {social.platform}
+                            </DoubleStackButton>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech stack -->
+    <section id="tech-stack">
+        <h1>2 years of experience tech stack. battle ready !</h1>
+
+        <div class="mt-6 border border-catpuccin-flamingo p-4"></div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+        <h1>experiences</h1>
+
+        <ExperienceTable />
+    </section>
+
+    <!-- Previous partners -->
+    <section id="partners">
+        <h1 class="text-catpuccin-mauve">previous partners</h1>
+
+        <div class="mt-6 border border-catpuccin-mauve p-4"></div>
+    </section>
+
+    <!-- Education -->
+    <section id="educations">
+        <h1 class="text-catpuccin-red">educations</h1>
+
+        <ExperienceTable />
+    </section>
+</GeneralLayout>

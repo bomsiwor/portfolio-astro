@@ -1,0 +1,243 @@
+---
+interface ExperienceItem {
+    id: string;
+    title: string;
+    startPeriod: string;
+    endPeriod?: string;
+    stillWork: boolean;
+    company: string;
+    companyDescription?: string;
+    location: string;
+    description: string[];
+    skills: string[];
+    products: string[];
+}
+
+// Sample data - replace with your actual experience data
+const experiences: ExperienceItem[] = [
+    {
+        id: "exp1",
+        title: "Software engineer (intern)",
+        startPeriod: "October, 2022",
+        endPeriod: "February, 2023",
+        stillWork: false,
+        company:
+            "PR-KAKS BRIN Pusat riset kecerdasan artifisial dan keamanan siber",
+        companyDescription:
+            "Pusat Riset Kecerdasan Artificial & Keamanan Siber - Badan Riset & Inovasi Nasional",
+        description: [
+            "Led development of security monitoring platform",
+            "Implemented threat detection algorithms",
+            "Managed team of 5 engineers",
+        ],
+        skills: ["React", "Node.js", "AWS", "Security"],
+        location: "Serpong, ID",
+        products: ["Prototype Auditools"],
+    },
+];
+
+const exp = experiences[0];
+---
+
+<style>
+    .experience-row {
+        @apply select-none;
+    }
+    .experience-table {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .experience-details {
+        transition: all 0.3 ease;
+    }
+</style>
+
+<div class="experience-table-container mx-auto">
+    <div
+        class="experience-table overflow-hidden rounded-sm border border-catpuccin-teal"
+    >
+        <!-- {experiences.map((exp) => ( -->
+        <div class="experience-row group" data-id={exp.id}>
+            <!-- Main Row (Always Visible) -->
+            <div
+                class="experience-header flex cursor-pointer items-center justify-between border-b border-catpuccin-teal p-4 transition-colors hover:bg-catpuccin-teal"
+            >
+                <div
+                    class="flex flex-col lg:grid lg:grid-cols-4 lg:items-center lg:text-center"
+                >
+                    <!-- Period -->
+                    <div>
+                        <span
+                            class="font-bold text-catpuccin-sky group-hover:text-catpuccin-base lg:text-lg"
+                            >{exp.startPeriod}</span
+                        >
+                        -
+                        <span
+                            class="font-bold text-catpuccin-sky group-hover:text-catpuccin-base lg:text-lg"
+                            >{
+                                exp.stillWork || !exp.endPeriod
+                                    ? "Present"
+                                    : exp.endPeriod
+                            }</span
+                        >
+                    </div>
+                    <!-- Company -->
+                    <div class="">
+                        <h3
+                            class="text-lg text-white group-hover:text-catpuccin-base"
+                        >
+                            {exp.company}
+                        </h3>
+                    </div>
+
+                    <!-- Position -->
+                    <div class="">
+                        <h3
+                            class="text-catpuccin-sky group-hover:text-catpuccin-base lg:text-lg"
+                        >
+                            {exp.title}
+                        </h3>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="">
+                        <h3
+                            class="text-catpuccin-text group-hover:text-catpuccin-base lg:text-lg"
+                        >
+                            {exp.location}
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="">
+                    <button
+                        class="expand-button flex h-6 w-6 items-center justify-center rounded-full border border-catpuccin-teal text-catpuccin-teal transition-colors hover:bg-teal-100 hover:text-catpuccin-base group-hover:border-catpuccin-overlay-0 group-hover:text-catpuccin-base"
+                    >
+                        <span class="plus-icon">+</span>
+                        <span class="minus-icon hidden">-</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Expanded Content (Hidden by Default) -->
+            <div class="experience-details hidden border-b bg-white">
+                <div class="p-4 sm:p-6">
+                    <div class="mb-4">
+                        <h4 class="mb-1 font-medium text-catpuccin-mantle">
+                            {exp.title}
+                        </h4>
+
+                        <p class="text-sm text-catpuccin-surface-0 sm:hidden">
+                            <span
+                                class="font-bold group-hover:text-catpuccin-base lg:text-lg"
+                                >{exp.startPeriod}</span
+                            >
+                            -
+                            <span
+                                class="font-bold group-hover:text-catpuccin-base lg:text-lg"
+                                >{
+                                    exp.stillWork || !exp.endPeriod
+                                        ? "Present"
+                                        : exp.endPeriod
+                                }</span
+                            >
+                        </p>
+
+                        <p class="text-xs text-catpuccin-base lg:text-base">
+                            {exp.companyDescription}
+                        </p>
+                    </div>
+
+                    <!-- Products -->
+                    <div class="mb-4">
+                        <h5
+                            class="mb-2 text-sm font-medium text-catpuccin-surface-0"
+                        >
+                            What i've made:
+                        </h5>
+                        <ul
+                            class="list-disc space-y-1 pl-5 text-sm text-catpuccin-surface-1"
+                        >
+                            {exp.products.map((item) => <li>{item}</li>)}
+                        </ul>
+                    </div>
+
+                    <!-- Responsibilities -->
+                    <div class="mb-4">
+                        <h5
+                            class="mb-2 text-sm font-medium text-catpuccin-surface-0"
+                        >
+                            Responsibilities:
+                        </h5>
+                        <ul
+                            class="list-disc space-y-1 pl-5 text-sm text-catpuccin-surface-1"
+                        >
+                            {exp.description.map((item) => <li>{item}</li>)}
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h5
+                            class="mb-2 text-sm font-medium text-catpuccin-surface-0"
+                        >
+                            Skills:
+                        </h5>
+                        <div class="flex flex-wrap gap-2">
+                            {
+                                exp.skills.map((skill) => (
+                                    <span class="rounded-sm bg-catpuccin-blue/50 px-2 py-1 text-xs text-catpuccin-base">
+                                        {skill}
+                                    </span>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ))}  -->
+    </div>
+</div>
+
+<script>
+    // Handle expanding/collapsing rows
+    document.addEventListener("DOMContentLoaded", () => {
+        const rows = document.querySelectorAll(".experience-row");
+
+        rows.forEach((row) => {
+            const header = row.querySelector(".experience-header");
+            const details = row.querySelector(".experience-details");
+            const plusIcon = row.querySelector(".plus-icon");
+            const minusIcon = row.querySelector(".minus-icon");
+
+            header?.addEventListener("click", () => {
+                // Toggle the expanded state
+                const isExpanded = details?.classList.contains("block");
+
+                // Close all other rows first
+                document
+                    .querySelectorAll(".experience-details")
+                    .forEach((el) => {
+                        el.classList.remove("block");
+                        el.classList.add("hidden");
+                    });
+
+                document.querySelectorAll(".plus-icon").forEach((el) => {
+                    el.classList.remove("hidden");
+                });
+
+                document.querySelectorAll(".minus-icon").forEach((el) => {
+                    el.classList.add("hidden");
+                });
+
+                // If this row wasn't already expanded, expand it
+                if (!isExpanded) {
+                    details?.classList.remove("hidden");
+                    details?.classList.add("block");
+                    plusIcon?.classList.add("hidden");
+                    minusIcon?.classList.remove("hidden");
+                }
+            });
+        });
+    });
+</script>
