@@ -4,6 +4,7 @@ import { type MarkdownLayoutProps } from "astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import CommandLine from "../components/CommandLine.astro";
+import GeneralLayout from "./GeneralLayout.astro";
 
 type Props = MarkdownLayoutProps<{
     title: string;
@@ -22,61 +23,44 @@ const { frontmatter, url, file } = Astro.props;
 const fileName = file.split("/").pop() as string;
 ---
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Bomsiwor - {frontmatter.title}</title>
-    </head>
-    <body class="min-h-screen bg-[#1a1b26] p-8 font-pixel text-white">
-        <div class="mx-auto max-w-7xl">
-            <Header path={url} />
+<GeneralLayout path={url as string}>
+    <CommandLine keyword="cat" text={fileName} />
 
-            <CommandLine keyword="cat" text={fileName} />
+    <!-- Header -->
+    <div class="my-10">
+        <h1 class="text-3xl text-catpuccin-text md:text-4xl lg:text-5xl">
+            {frontmatter.title}
+        </h1>
 
-            <!-- Header -->
-            <div class="my-10">
-                <h1
-                    class="text-3xl text-catpuccin-text md:text-4xl lg:text-5xl"
-                >
-                    {frontmatter.title}
-                </h1>
+        <p>
+            {
+                frontmatter.startPeriod
+                    ? `${frontmatter.startPeriod} - ${frontmatter.endPeriod || "present"} `
+                    : "Unspecified date"
+            }
+        </p>
+    </div>
 
-                <p>
-                    {
-                        frontmatter.startPeriod
-                            ? `${frontmatter.startPeriod} - ${frontmatter.endPeriod || "present"} `
-                            : "Unspecified date"
-                    }
-                </p>
-            </div>
-
-            <!-- Article grid -->
-            <main class="grid grid-cols-1 justify-between lg:grid-cols-2">
-                <div
-                    class="prose max-w-full text-white prose-headings:py-2 prose-headings:pl-2 prose-headings:text-white prose-h1:bg-catpuccin-overlay-0 prose-h1:text-3xl prose-h2:bg-catpuccin-blue prose-h2:text-2xl prose-h3:bg-catpuccin-teal prose-h3:text-xl prose-h3:text-catpuccin-base prose-p:break-words prose-p:text-justify prose-p:indent-12 prose-p:text-lg lg:pr-4"
-                >
-                    <slot />
-                </div>
-
-                <div class="order-first mb-4 w-full lg:order-last">
-                    <img
-                        class="max-h-[360px] w-full border border-catpuccin-mauve object-cover p-4"
-                        src={frontmatter.img || "/article-default.jpg"}
-                        alt={frontmatter.imgCaption || frontmatter.title}
-                        width="640"
-                        height="360"
-                    />
-
-                    <div
-                        class="mt-2 bg-catpuccin-mauve p-3 text-catpuccin-base"
-                    >
-                        <p>{frontmatter.imgCaption || frontmatter.title}</p>
-                    </div>
-                </div>
-            </main>
-
-            <Footer />
+    <!-- Article grid -->
+    <main class="grid grid-cols-1 justify-between lg:grid-cols-2">
+        <div
+            class="prose max-w-full text-white prose-headings:py-2 prose-headings:pl-2 prose-headings:text-white prose-h1:bg-catpuccin-overlay-0 prose-h1:text-3xl prose-h2:bg-catpuccin-blue prose-h2:text-2xl prose-h3:bg-catpuccin-teal prose-h3:text-xl prose-h3:text-catpuccin-base prose-p:break-words prose-p:text-justify prose-p:indent-12 prose-p:text-lg lg:pr-4"
+        >
+            <slot />
         </div>
-    </body>
-</html>
+
+        <div class="order-first mb-4 w-full lg:order-last">
+            <img
+                class="max-h-[360px] w-full border border-catpuccin-mauve object-cover p-4"
+                src={frontmatter.img || "/article-default.jpg"}
+                alt={frontmatter.imgCaption || frontmatter.title}
+                width="640"
+                height="360"
+            />
+
+            <div class="mt-2 bg-catpuccin-mauve p-3 text-catpuccin-base">
+                <p>{frontmatter.imgCaption || frontmatter.title}</p>
+            </div>
+        </div>
+    </main>
+</GeneralLayout>

@@ -4,6 +4,8 @@ import DoubleStackButton from "@components/DoubleStackButton";
 import GeneralLayout from "@layout/GeneralLayout.astro";
 import ExperienceTable from "@components/ExperienceTable.astro";
 import socials from "@data/socials";
+import { Image } from "astro:assets";
+import frontImage from "../images/front-image.webp";
 ---
 
 <style>
@@ -29,7 +31,9 @@ import socials from "@data/socials";
     >
         <p class="text-catpuccin-sky">too lazy to read?</p>
 
-        <DoubleStackButton client:load icon="🤖"> Ask AI </DoubleStackButton>
+        <DoubleStackButton client:load icon="🤖">
+            Ask AI (coming soon)
+        </DoubleStackButton>
     </div>
 
     <!-- Overview -->
@@ -60,8 +64,12 @@ import socials from "@data/socials";
             </div>
             <!-- Photo -->
             <div class="order-first flex justify-center lg:order-1 lg:w-[25vw]">
-                <div class="aspect-square w-full bg-catpuccin-blue lg:w-[25vw]">
-                </div>
+                <Image
+                    src={frontImage}
+                    alt="Pixel art of Bomsiwor"
+                    class="aspect-square w-full object-cover lg:w-[25vw]"
+                    loading={"eager"}
+                />
             </div>
 
             <!-- Social links -->
