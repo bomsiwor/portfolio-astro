@@ -4,108 +4,9 @@ import CommandLine from "../components/CommandLine.astro";
 import GeneralLayout from "../layouts/GeneralLayout.astro";
 
 // Sample blog data - in a real app, this would come from a CMS or API
-const blogs = [
-    {
-        id: 1,
-        title: "Building a Terminal-Style Portfolio with Astro and TailwindCSS",
-        excerpt:
-            "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur adipisci velit... There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...",
-        image: "/placeholder.jpg",
-        tags: ["Database", "Low Level", "SQL", "Server"],
-        additionalTags: 3,
-        year: 2023,
-    },
-    {
-        id: 2,
-        title: "How to Create Pixel-Perfect UI Components for Modern Web Apps",
-        excerpt:
-            "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur adipisci velit... There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...",
-        image: "/placeholder.jpg",
-        tags: ["Database", "PHP", "Postgres"],
-        additionalTags: 3,
-        year: 2023,
-    },
-    {
-        id: 3,
-        title: "Optimizing Performance in JavaScript Applications: A Deep Dive",
-        excerpt:
-            "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur adipisci velit... There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...",
-        image: "/placeholder.jpg",
-        tags: ["Database", "PHP", "Postgres"],
-        additionalTags: 3,
-        year: 2023,
-    },
-    {
-        id: 4,
-        title: "The Future of Web Development: Trends to Watch in 2023",
-        excerpt:
-            "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur adipisci velit... There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...",
-        image: "/placeholder.jpg",
-        tags: ["Database", "PHP", "Postgres"],
-        additionalTags: 3,
-        year: 2023,
-    },
-    {
-        id: 4,
-        title: "Title 4",
-        excerpt:
-            "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur adipisci velit... There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...",
-        image: "/placeholder.jpg",
-        tags: ["Database", "PHP", "Postgres"],
-        additionalTags: 3,
-        year: 2023,
-    },
-    {
-        id: 5,
-        title: "Title 5",
-        excerpt:
-            "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur adipisci velit... There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...",
-        image: "/placeholder.jpg",
-        tags: ["Database", "PHP", "Postgres"],
-        additionalTags: 3,
-        year: 2023,
-    },
-    {
-        id: 6,
-        title: "Title 6",
-        excerpt:
-            "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur adipisci velit... There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...",
-        image: "/placeholder.jpg",
-        tags: ["Database", "PHP", "Postgres"],
-        additionalTags: 3,
-        year: 2023,
-    },
-    {
-        id: 7,
-        title: "Title 7",
-        excerpt:
-            "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur adipisci velit... There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...",
-        image: "/placeholder.jpg",
-        tags: ["Database", "PHP", "Postgres"],
-        additionalTags: 3,
-        year: 2023,
-    },
-    {
-        id: 8,
-        title: "Title 8",
-        excerpt:
-            "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur adipisci velit... There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...",
-        image: "/placeholder.jpg",
-        tags: ["Database", "PHP", "Postgres"],
-        additionalTags: 3,
-        year: 2023,
-    },
-    {
-        id: 9,
-        title: "Title 9",
-        excerpt:
-            "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur adipisci velit... There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...",
-        image: "/placeholder.jpg",
-        tags: ["Database", "PHP", "Postgres"],
-        additionalTags: 3,
-        year: 2023,
-    },
-];
+const blogs = Object.values(
+    import.meta.glob("./blogs/*.md", { eager: true }),
+) as any[];
 
 // Get the first blog for initial headline display
 const headlineBlogs = blogs.slice(0, 3);
@@ -145,6 +46,9 @@ const restBlogs = blogs.slice(7);
                             <!-- Carousel content -->
                             {
                                 headlineBlogs.map((blog, i) => {
+              const { title, tags, year, description, img, imgCaption } =
+                                        blog.frontmatter;
+
                                     return (
                                         <div
                                             class="headline-slide transition-opacity duration-500 ease-in-out"
@@ -154,38 +58,40 @@ const restBlogs = blogs.slice(7);
                                                     : "opacity: 0; pointer-events: none"
                                             }
                                         >
-                                            <div class="mb-4 h-64 w-full bg-gray-200" />
+                                            <!-- Image -->
+                                            <img
+                                                class="mb-4 h-64 w-full object-cover bg-gray-200"
+                                                src={img || "/article-default.jpg"}
+                                                alt={imgCaption || title}
+                                            />
+
                                             <a
                                                 class="mb-2 font-pixel text-2xl transition-colors duration-200 hover:text-catpuccin-sky"
                                                 href={blog.url || "#"}
                                             >
-                                                {blog.title}
+                                                {title}
                                             </a>
                                             <p class="mb-4 text-sm text-gray-400">
-                                                This is the title where xxx xxx
-                                                xxx xxxx and so long text that
-                                                will showed up here.
+                                                {description}
                                             </p>
                                             <div class="flex items-center justify-between">
                                                 <div class="flex space-x-2">
-                                                    {blog.tags
+                                                    {tags
                                                         .slice(0, 3)
-                                                        .map((tag) => (
+                                                        .map((tag: any) => (
                                                             <span class="border border-gray-600 px-2 py-1 text-xs">
                                                                 {tag}
                                                             </span>
                                                         ))}
-                                                    {blog.tags.length > 3 && (
+                                                    {tags.length > 3 && (
                                                         <span class="border border-gray-600 px-2 py-1 text-xs">
-                                                            +
-                                                            {blog.tags.length -
-                                                                3}{" "}
+                                                            +{tags.length - 3}{" "}
                                                             more
                                                         </span>
                                                     )}
                                                 </div>
                                                 <span class="text-gray-400">
-                                                    {blog.year}
+                                                    {year}
                                                 </span>
                                             </div>
                                         </div>
@@ -214,28 +120,35 @@ const restBlogs = blogs.slice(7);
             <!-- Right Side - Article List -->
             <div class="flex flex-col justify-between gap-4 lg:col-span-1">
                 {
-                    precedentBlogs.map((blog) => (
-                        <BlogCardList
-                            title={blog.title}
-                            year={blog.year}
-                            tags={blog.tags}
-                            excerpt={blog.excerpt}
-                        />
-                    ))
+                    precedentBlogs.map((blog) => {
+                        const { title, tags, year, description } =
+                            blog.frontmatter;
+                        return (
+                            <BlogCardList
+                                title={title}
+                                year={year}
+                                tags={tags}
+                                excerpt={description}
+                            />
+                        );
+                    })
                 }
             </div>
         </div>
 
         <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
             {
-                restBlogs.map((blog) => (
-                    <BlogCardList
-                        title={blog.title}
-                        year={blog.year}
-                        tags={blog.tags}
-                        excerpt={blog.excerpt}
-                    />
-                ))
+                restBlogs.map((blog) => {
+                    const { title, tags, year, description } = blog.frontmatter;
+                    return (
+                        <BlogCardList
+                            title={title}
+                            year={year}
+                            tags={tags}
+                            excerpt={description}
+                        />
+                    );
+                })
             }
         </div>
     </main>

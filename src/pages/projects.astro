@@ -2,6 +2,11 @@
 import CommandLine from "../components/CommandLine.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import GeneralLayout from "../layouts/GeneralLayout.astro";
+
+// Generate all links for projects using import meta glob
+const projects = Object.values(
+    import.meta.glob("./projects/*.md", { eager: true }),
+);
 ---
 
 <GeneralLayout path={"projects"}>
@@ -15,33 +20,21 @@ import GeneralLayout from "../layouts/GeneralLayout.astro";
     </section>
 
     <section class="grid grid-cols-1 items-center gap-4 lg:grid-cols-3">
-        <ProjectCard
-            title="LIS - Nuclear Instrumentation Labs Management System"
-            subtitle="This is a project that handle Nuclear Instrumentation Laboratory Information System"
-            year={2023}
-            teamSize={1}
-            url="/projects/01-lis-instrumentation-nuclear"
-        />
+        {
+            projects.map((project: any) => {
+                const { title, teamSize, description, year } =
+                    project.frontmatter;
 
-        <ProjectCard
-            title="LIS - Nuclear Instrumentation Labs Management System"
-            subtitle="This is a project that handle Nuclear Instrumentation Laboratory Information System"
-            year={2023}
-            teamSize={1}
-        />
-
-        <ProjectCard
-            title="LIS - Nuclear Instrumentation Labs Management System"
-            subtitle="This is a project that handle Nuclear Instrumentation Laboratory Information System"
-            year={2023}
-            teamSize={1}
-        />
-
-        <ProjectCard
-            title="LIS - Nuclear Instrumentation Labs Management System"
-            subtitle="This is a project that handle Nuclear Instrumentation Laboratory Information System"
-            year={2023}
-            teamSize={1}
-        />
+                return (
+                    <ProjectCard
+                        title={title}
+                        subtitle={description}
+                        year={year}
+                        teamSize={teamSize}
+                        url={project.url}
+                    />
+                );
+            })
+        }
     </section>
 </GeneralLayout>
