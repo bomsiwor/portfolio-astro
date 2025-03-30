@@ -1,14 +1,13 @@
 ---
 import "../styles/global.css";
 import { type MarkdownLayoutProps } from "astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
 import CommandLine from "../components/CommandLine.astro";
 import GeneralLayout from "./GeneralLayout.astro";
+import { Image } from "astro:assets";
 
 type Props = MarkdownLayoutProps<{
     title: string;
-    date: string;
+    publishedAt: string;
     img?: string;
     imgCaption?: string;
     startPeriod?: string;
@@ -17,6 +16,18 @@ type Props = MarkdownLayoutProps<{
 
 // Extract frontmatter
 const { frontmatter, url, file } = Astro.props;
+
+// Compute date
+const parsedDate = new Date(frontmatter.publishedAt).toLocaleString("en-GB", {
+    weekday: "long",
+    month: "long",
+    day: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+});
+
+const date = parsedDate;
 
 // Extract the file name
 // Get only the file name
@@ -32,30 +43,36 @@ const fileName = file.split("/").pop() as string;
             {frontmatter.title}
         </h1>
 
+        <!-- For project -->
         <p>
             {
-                frontmatter.startPeriod
-                    ? `${frontmatter.startPeriod} - ${frontmatter.endPeriod || "present"} `
-                    : "Unspecified date"
+                frontmatter.startPeriod &&
+                    `${frontmatter.startPeriod} - ${frontmatter.endPeriod || "present"} `
             }
+        </p>
+
+        <!-- For Blog -->
+        <p class="text-catpuccin-subtext-0">
+            published at {date}
         </p>
     </div>
 
     <!-- Article grid -->
     <main class="grid grid-cols-1 justify-between lg:grid-cols-2">
         <div
-            class="prose max-w-full text-white prose-headings:py-2 prose-headings:pl-2 prose-headings:text-white prose-h1:bg-catpuccin-overlay-0 prose-h1:text-3xl prose-h2:bg-catpuccin-blue prose-h2:text-2xl prose-h3:bg-catpuccin-teal prose-h3:text-xl prose-h3:text-catpuccin-base prose-p:break-words prose-p:text-justify prose-p:indent-12 prose-p:text-lg lg:pr-4"
+            class="prose max-w-full font-spacemono text-white prose-headings:py-2 prose-headings:pl-2 prose-headings:font-pixel prose-headings:text-white prose-h1:bg-catpuccin-overlay-0 prose-h1:text-3xl prose-h2:bg-catpuccin-blue prose-h2:text-2xl prose-h3:bg-catpuccin-teal prose-h3:text-xl prose-h3:text-catpuccin-base prose-p:break-words prose-p:indent-8 prose-p:text-base prose-strong:font-bold prose-strong:text-white prose-code:bg-catpuccin-blue prose-code:text-catpuccin-base lg:pr-4"
         >
             <slot />
         </div>
 
         <div class="order-first mb-4 w-full lg:order-last">
-            <img
+            <Image
                 class="max-h-[360px] w-full border border-catpuccin-mauve object-cover p-4"
                 src={frontmatter.img || "/article-default.jpg"}
                 alt={frontmatter.imgCaption || frontmatter.title}
                 width="640"
-                height="360"
+                height="430"
+                loading={"eager"}
             />
 
             <div class="mt-2 bg-catpuccin-mauve p-3 text-catpuccin-base">

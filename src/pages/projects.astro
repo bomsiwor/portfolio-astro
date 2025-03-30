@@ -22,7 +22,7 @@ const projects = Object.values(
     <section class="grid grid-cols-1 items-center gap-4 lg:grid-cols-3">
         {
             projects.map((project: any) => {
-                const { title, teamSize, description, year } =
+                const { title, teamSize, description, year, image } =
                     project.frontmatter;
 
                 return (
@@ -32,6 +32,7 @@ const projects = Object.values(
                         year={year}
                         teamSize={teamSize}
                         url={project.url}
+                        imageUrl={image}
                     />
                 );
             })

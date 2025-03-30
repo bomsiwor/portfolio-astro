@@ -3,9 +3,10 @@ import CommandLine from "@components/CommandLine.astro";
 import DoubleStackButton from "@components/DoubleStackButton";
 import GeneralLayout from "@layout/GeneralLayout.astro";
 import ExperienceTable from "@components/ExperienceTable.astro";
+import EducationTable from "@components/EducationTable.astro";
 import socials from "@data/socials";
 import { Image } from "astro:assets";
-import frontImage from "../images/front-image.webp";
+import frontImage from "../images/front-image-closeup.webp";
 ---
 
 <style>
@@ -116,6 +117,6 @@ import frontImage from "../images/front-image.webp";
     <section id="educations">
         <h1 class="text-catpuccin-red">educations</h1>
 
-        <ExperienceTable />
+        <EducationTable />
     </section>
 </GeneralLayout>

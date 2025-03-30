@@ -2,12 +2,13 @@
 layout: ../../layouts/ArticleLayouts.astro
 title: LIS Nuclear Instrumentation
 description: Develop prototype of Laboratory Information System (LIS) for Nuclear Instrumentation Laboratory
+image: ../../images/projects/lis-insnuk-porto.webp
 imgCaption: Laboratory Information System of Nuclear Instrumentation Labs
 year: 2023
 teamSize: 1
 startPeriod: January 2023
 endPeriod: March 2023
-date: 2025-03-01
+publishedAt: 2025-03-01 18:15
 ---
 
 # Hello guys

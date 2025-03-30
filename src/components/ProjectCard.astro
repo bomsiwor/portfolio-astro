@@ -1,9 +1,11 @@
 ---
+import { Image } from "astro:assets";
+
 // ProjectCard.astro
 interface Props {
     title: string;
     subtitle: string;
-    imageUrl?: string;
+    imageUrl: string;
     year: string | number;
     teamSize: number;
     url?: string;
@@ -12,7 +14,7 @@ interface Props {
 const {
     title,
     subtitle,
-    imageUrl = "/egg.png",
+    imageUrl,
     year,
     teamSize = 1,
     url = "#",
@@ -67,16 +69,12 @@ const teamBadgeText = teamSize === 1 ? "solo" : `${teamSize} person`;
         <!-- Project Image -->
         <div class="mb-4 mt-12 flex h-48 w-full items-center justify-center">
             {
-                imageUrl ? (
+                imageUrl && (
                     <img
                         src={imageUrl || "/placeholder.svg"}
                         alt={title + " " + "Thumbnail"}
                         class="max-h-full object-contain"
                     />
-                ) : (
-                    <div class="flex h-full w-full items-center justify-center bg-gray-200">
-                        <span class="text-gray-400">Image Placeholder</span>
-                    </div>
                 )
             }
         </div>

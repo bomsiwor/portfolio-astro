@@ -6,6 +6,7 @@ export default {
             fontFamily: {
                 bricol: ["Bricolage Grotesque", "serif"],
                 pixel: ["Pixelify Sans", "sans-serif"],
+                spacemono: ["Space Mono", "monospace"],
             },
             colors: {
                 lighter: {
