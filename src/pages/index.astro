@@ -5,24 +5,21 @@ import PixelatedHello from "@components/PixelatedHello.tsx";
 import SocialMediaButton from "@components/SocialMediaButton.astro";
 import GeneralLayout from "../layouts/GeneralLayout.astro";
 import socials from "@data/socials.ts";
-import { Image } from "astro:assets";
-import frontImage from "../images/front-image.webp";
-import earthIcon from "../images/earth.png";
 ---
 
 <GeneralLayout path={""}>
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <!-- Profile Terminal Window -->
         <TerminalWindow title="#!/bin/bash" email="bomsiwor@gmail.com">
-            <div class="flex h-full flex-col justify-between">
-                <div>
-                    <Image
-                        src={frontImage}
-                        alt="Bomsiwor potrait"
-                        class="mb-6 h-32 w-32 object-cover"
-                        draggable="false"
-                        loading="eager"
-                    />
+            <div class="flex h-full grow flex-col justify-between">
+                <div class="">
+                    <!-- <Image -->
+                    <!--     src={frontImage} -->
+                    <!--     alt="Bomsiwor potrait" -->
+                    <!--     class="mb-6 h-32 w-32 object-cover" -->
+                    <!--     draggable="false" -->
+                    <!--     loading="eager" -->
+                    <!-- /> -->
 
                     <h2 class="mb-2 text-2xl font-bold text-white lg:text-4xl">
                         sono <span class="text-catpuccin-sky">Boma</span
@@ -37,10 +34,16 @@ import earthIcon from "../images/earth.png";
                     <p
                         class="mb-6 text-xs leading-relaxed text-catpuccin-sapphire md:text-base"
                     >
-                        High-Impact Code. 2 Years of Crafting Digital Solutions.
-                        🚀 <br /> I build software that lasts. AI powered app ? Just
-                        call me! <br /> Let's create something unforgettable
-                        together!
+                        High-Impact Code. <span class="text-catpuccin-green">
+                            2 Years of Experiences</span
+                        > Crafting Digital Solutions. 🚀 <br /> I build software
+                        that lasts. <span class="text-catpuccin-green">
+                            AI powered app
+                        </span> ? Just call me! <br />
+                        <span class="text-catpuccin-green">
+                            I am also do mentoring.
+                        </span>
+                        <br /> Let's create something unforgettable together!
                     </p>
 
                     <div>
