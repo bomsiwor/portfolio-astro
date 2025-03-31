@@ -1,38 +1,34 @@
 ---
 interface IEducationItems {
     id: string;
-    title: string;
     startPeriod: string;
-    endPeriod?: string;
-    stillWork: boolean;
-    company: string;
-    companyDescription?: string;
+    endPeriod: string;
+    school: string;
+    schoolDescription?: string;
+    title?: string;
+    major: string;
     location: string;
     description: string[];
     skills: string[];
-    products: string[];
 }
 
 // Sample data - replace with your actual experience data
 const educations: IEducationItems[] = [
     {
         id: "exp1",
-        title: "Software engineer (intern)",
-        startPeriod: "October, 2022",
-        endPeriod: "February, 2023",
-        stillWork: false,
-        company:
-            "PR-KAKS BRIN Pusat riset kecerdasan artifisial dan keamanan siber",
-        companyDescription:
-            "Pusat Riset Kecerdasan Artificial & Keamanan Siber - Badan Riset & Inovasi Nasional",
+        startPeriod: "August, 2019",
+        endPeriod: "September, 2023",
+        school: "Politeknik Teknologi Nuklir Indonesia",
+        schoolDescription: "",
+        title: " Diploma IV - Bachelor of Applied Engineering",
+        major: "Nuclear Technophysics - Instrumentation Engineer ",
         description: [
             "Led development of security monitoring platform",
             "Implemented threat detection algorithms",
             "Managed team of 5 engineers",
         ],
         skills: ["React", "Node.js", "AWS", "Security"],
-        location: "Serpong, ID",
-        products: ["Prototype Auditools"],
+        location: "Yogyakarta, ID",
     },
 ];
 
@@ -69,33 +65,27 @@ const edu = educations[0];
                     <div>
                         <span
                             class="font-bold text-catpuccin-sky group-hover:text-catpuccin-base lg:text-lg"
-                            >{edu.startPeriod}</span
-                        >
-                        -
-                        <span
-                            class="font-bold text-catpuccin-sky group-hover:text-catpuccin-base lg:text-lg"
-                            >{
-                                edu.stillWork || !edu.endPeriod
-                                    ? "Present"
-                                    : edu.endPeriod
-                            }</span
+                            >{`${edu.startPeriod} - ${edu.endPeriod}`}</span
                         >
                     </div>
-                    <!-- Company -->
+                    <!-- School -->
                     <div class="">
                         <h3
                             class="text-lg text-white group-hover:text-catpuccin-base"
                         >
-                            {edu.company}
+                            {edu.school}
                         </h3>
+                        <span
+                            class="text-sm text-catpuccin-subtext-0 group-hover:text-catpuccin-base"
+                        >
+                            {edu.title && `( ${edu.title} )`}
+                        </span>
                     </div>
 
-                    <!-- Position -->
+                    <!-- Major & TItle -->
                     <div class="">
-                        <h3
-                            class="text-catpuccin-sky group-hover:text-catpuccin-base lg:text-lg"
-                        >
-                            {edu.title}
+                        <h3 class="group-hover:text-catpuccin-base lg:text-lg">
+                            {`${edu.major}`}
                         </h3>
                     </div>
 
@@ -129,37 +119,14 @@ const edu = educations[0];
 
                         <p class="text-sm text-catpuccin-surface-0 sm:hidden">
                             <span
-                                class="font-bold group-hover:text-catpuccin-base lg:text-lg"
-                                >{edu.startPeriod}</span
-                            >
-                            -
-                            <span
-                                class="font-bold group-hover:text-catpuccin-base lg:text-lg"
-                                >{
-                                    edu.stillWork || !edu.endPeriod
-                                        ? "Present"
-                                        : edu.endPeriod
-                                }</span
+                                class="font-bold text-catpuccin-sky group-hover:text-catpuccin-base lg:text-lg"
+                                >{`${edu.startPeriod} - ${edu.endPeriod}`}</span
                             >
                         </p>
 
                         <p class="text-xs text-catpuccin-base lg:text-base">
-                            {edu.companyDescription}
+                            {edu.schoolDescription}
                         </p>
-                    </div>
-
-                    <!-- Products -->
-                    <div class="mb-4">
-                        <h5
-                            class="mb-2 text-sm font-medium text-catpuccin-surface-0"
-                        >
-                            What i've made:
-                        </h5>
-                        <ul
-                            class="list-disc space-y-1 pl-5 text-sm text-catpuccin-surface-1"
-                        >
-                            {edu.products.map((item) => <li>{item}</li>)}
-                        </ul>
                     </div>
 
                     <!-- Responsibilities -->
@@ -167,7 +134,7 @@ const edu = educations[0];
                         <h5
                             class="mb-2 text-sm font-medium text-catpuccin-surface-0"
                         >
-                            Responsibilities:
+                            What i have achieved:
                         </h5>
                         <ul
                             class="list-disc space-y-1 pl-5 text-sm text-catpuccin-surface-1"
