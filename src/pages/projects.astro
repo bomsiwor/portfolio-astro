@@ -6,7 +6,7 @@ import { getCollection } from "astro:content";
 const projects = await getCollection("projects");
 ---
 
-<GeneralLayout path={"projects"}>
+<GeneralLayout path={"projects"} title="Projects">
     <!-- Command line -->
     <section class="mb-4">
         <CommandLine

@@ -34,7 +34,7 @@ const date = parsedDate;
 const fileName = file.split("/").pop() as string;
 ---
 
-<GeneralLayout path={url as string}>
+<GeneralLayout path={url as string} title={frontmatter.title}>
     <CommandLine keyword="cat" text={fileName} />
 
     <!-- Header -->
