@@ -2,11 +2,8 @@
 import CommandLine from "../components/CommandLine.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import GeneralLayout from "../layouts/GeneralLayout.astro";
-
-// Generate all links for projects using import meta glob
-const projects = Object.values(
-    import.meta.glob("./projects/*.md", { eager: true }),
-);
+import { getCollection } from "astro:content";
+const projects = await getCollection("projects");
 ---
 
 <GeneralLayout path={"projects"}>
@@ -23,7 +20,7 @@ const projects = Object.values(
         {
             projects.map((project: any) => {
                 const { title, teamSize, description, year, image } =
-                    project.frontmatter;
+                    project.data;
 
                 return (
                     <ProjectCard
@@ -31,8 +28,8 @@ const projects = Object.values(
                         subtitle={description}
                         year={year}
                         teamSize={teamSize}
-                        url={project.url}
-                        imageUrl={image}
+                        url={"/projects/" + project.id}
+                        image={image}
                     />
                 );
             })

@@ -1,12 +1,11 @@
 ---
+import { getCollection } from "astro:content";
 import BlogCardList from "../components/BlogCardList.astro";
 import CommandLine from "../components/CommandLine.astro";
 import GeneralLayout from "../layouts/GeneralLayout.astro";
 
 // Sample blog data - in a real app, this would come from a CMS or API
-const blogs = Object.values(
-    import.meta.glob("./blogs/*.md", { eager: true }),
-) as any[];
+const blogs = await getCollection("blogs")
 
 // Get the first blog for initial headline display
 const headlineBlogs = blogs.slice(0, 3);
@@ -45,9 +44,9 @@ const restBlogs = blogs.slice(7);
                         <div class="h-full border border-catpuccin-mauve p-4">
                             <!-- Carousel content -->
                             {
-                                headlineBlogs.map((blog, i) => {
+                                headlineBlogs.map((blog:any, i:number) => {
               const { title, tags, year, description, img, imgCaption } =
-                                        blog.frontmatter;
+                                        blog.data;
 
                                     return (
                                         <div
@@ -67,7 +66,7 @@ const restBlogs = blogs.slice(7);
 
                                             <a
                                                 class="mb-2 font-pixel text-2xl transition-colors duration-200 hover:text-catpuccin-sky"
-                                                href={blog.url || "#"}
+                  href={"/blogs/" + blog.id}
                                             >
                                                 {title}
                                             </a>
@@ -101,7 +100,7 @@ const restBlogs = blogs.slice(7);
                             <!-- Carousel Navigation Dots -->
                             <div class="mt-4 flex justify-center space-x-2">
                                 {
-                                    headlineBlogs.map((_, i) => {
+                                    headlineBlogs.map((_:any, i:any) => {
                                         return (
                                             <button
                                                 class="carousel-dot h-3 w-3 cursor-pointer border border-catpuccin-mauve bg-catpuccin-mauve transition-colors duration-300"
@@ -120,9 +119,9 @@ const restBlogs = blogs.slice(7);
             <!-- Right Side - Article List -->
             <div class="flex flex-col justify-between gap-4 lg:col-span-1">
                 {
-                    precedentBlogs.map((blog) => {
+                    precedentBlogs.map((blog:any) => {
                         const { title, tags, year, description } =
-                            blog.frontmatter;
+                            blog.data;
                         return (
                             <BlogCardList
                                 title={title}
@@ -138,8 +137,8 @@ const restBlogs = blogs.slice(7);
 
         <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
             {
-                restBlogs.map((blog) => {
-                    const { title, tags, year, description } = blog.frontmatter;
+                restBlogs.map((blog:any) => {
+                    const { title, tags, year, description } = blog.data;
                     return (
                         <BlogCardList
                             title={title}
