@@ -33,7 +33,9 @@ export default function TerminalWindow(props: Props) {
                     )}
                 </div>
 
-                <div className="min-h-[400px]">{props.children}</div>
+                <div className="flex flex-col lg:min-h-[60vh]">
+                    {props.children}
+                </div>
             </div>
         </div>
     );

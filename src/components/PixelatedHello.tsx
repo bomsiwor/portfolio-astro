@@ -28,7 +28,7 @@ export default function PixelatedHello() {
     };
 
     return (
-        <div className="flex h-[500px] flex-col justify-between">
+        <div className="flex h-[60vh] flex-col justify-between">
             <div className="flex grow cursor-progress items-center justify-center">
                 <div className="relative mx-auto h-4/5 w-4/5">
                     {/* Main purple rectangle */}
