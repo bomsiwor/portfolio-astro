@@ -3,12 +3,12 @@ import "../styles/global.css";
 import { type MarkdownLayoutProps } from "astro";
 import CommandLine from "../components/CommandLine.astro";
 import GeneralLayout from "./GeneralLayout.astro";
-import { Image } from "astro:assets";
+import { getImage, Image } from "astro:assets";
 
 type Props = MarkdownLayoutProps<{
     title: string;
     publishedAt: string;
-    img?: string;
+    image: string;
     imgCaption?: string;
     startPeriod?: string;
     endPeriod?: string;
@@ -16,6 +16,14 @@ type Props = MarkdownLayoutProps<{
 
 // Extract frontmatter
 const { frontmatter, url, file } = Astro.props;
+
+// Dynaimcally import image
+const images = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/images/**/*.{jpg,jpeg,png,webp}",
+);
+const image = frontmatter.image.startsWith("http")
+    ? frontmatter.image
+    : (await images[frontmatter.image]()).default;
 
 // Compute date
 const parsedDate = new Date(frontmatter.publishedAt).toLocaleString("en-GB", {
@@ -68,10 +76,10 @@ const fileName = file.split("/").pop() as string;
         <div class="order-first mb-4 w-full lg:order-last">
             <Image
                 class="max-h-[360px] w-full border border-catpuccin-mauve object-cover p-4"
-                src={frontmatter.img || "/article-default.jpg"}
+                src={image as ImageMetadata}
+                width={typeof image === "string" ? 600 : undefined}
+                height={typeof image === "string" ? 400 : undefined}
                 alt={frontmatter.imgCaption || frontmatter.title}
-                width="640"
-                height="430"
                 loading={"eager"}
             />
 

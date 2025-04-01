@@ -3,9 +3,10 @@ import { getCollection } from "astro:content";
 import BlogCardList from "../components/BlogCardList.astro";
 import CommandLine from "../components/CommandLine.astro";
 import GeneralLayout from "../layouts/GeneralLayout.astro";
+import { Image } from "astro:assets";
 
 // Sample blog data - in a real app, this would come from a CMS or API
-const blogs = await getCollection("blogs")
+const blogs = await getCollection<"blogs">("blogs")
 
 // Get the first blog for initial headline display
 const headlineBlogs = blogs.slice(0, 3);
@@ -44,8 +45,8 @@ const restBlogs = blogs.slice(7);
                         <div class="h-full border border-catpuccin-mauve p-4">
                             <!-- Carousel content -->
                             {
-                                headlineBlogs.map((blog:any, i:number) => {
-              const { title, tags, year, description, img, imgCaption } =
+                                headlineBlogs.map((blog, i:number) => {
+              const { title, tags, year, description, image, imgCaption } =
                                         blog.data;
 
                                     return (
@@ -58,11 +59,14 @@ const restBlogs = blogs.slice(7);
                                             }
                                         >
                                             <!-- Image -->
-                                            <img
-                                                class="mb-4 h-64 w-full object-cover bg-gray-200"
-                                                src={img || "/article-default.jpg"}
-                                                alt={imgCaption || title}
-                                            />
+<Image
+  src={ image  } 
+  width={typeof image === 'string' ? 600 : undefined}
+  height={typeof image === 'string' ? 400 : undefined}
+  alt={imgCaption || title}
+  loading="eager"
+  class="mb-4 h-64 w-full object-cover bg-gray-200"
+/>
 
                                             <a
                                                 class="mb-2 font-pixel text-2xl transition-colors duration-200 hover:text-catpuccin-sky"

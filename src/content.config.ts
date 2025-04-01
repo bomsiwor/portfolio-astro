@@ -20,14 +20,16 @@ const projects = defineCollection({
 
 const blogs = defineCollection({
     loader: glob({ pattern: "**/*.md", base: "./src/pages/blogs" }),
-    schema: z.object({
-        title: z.string(),
-        description: z.string(),
-        imgCaption: z.string(),
-        year: z.number(),
-        publishedAt: z.string().transform((str) => new Date(str)),
-        tags: z.array(z.string()),
-    }),
+    schema: ({ image }) =>
+        z.object({
+            title: z.string(),
+            description: z.string(),
+            image: image(),
+            imgCaption: z.string(),
+            year: z.number(),
+            publishedAt: z.string().transform((str) => new Date(str)),
+            tags: z.array(z.string()),
+        }),
 });
 
 // Export single collection instance
