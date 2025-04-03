@@ -9,10 +9,16 @@ const { url, platform, icon: Icon } = Astro.props;
 ---
 
 <a
-    class="flex items-center gap-2 border border-catpuccin-sapphire px-4 py-2 text-xs transition-colors duration-150 hover:border-catpuccin-yellow lg:text-base"
+    class="flex items-center gap-2 border border-catpuccin-sapphire px-4 py-2 text-xs transition-colors duration-150 hover:border-catpuccin-yellow hover:text-catpuccin-yellow lg:text-base"
     href={url}
     target="_blank"
 >
-    <span>{Icon && <Icon width="24px" class="fill-catpuccin-text" />}</span>
+    <span
+        >{
+            Icon && (
+                <Icon width="16px" height="16px" class="fill-catpuccin-text" />
+            )
+        }</span
+    >
     <p>{platform}</p>
 </a>
