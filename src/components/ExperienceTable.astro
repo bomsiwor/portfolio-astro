@@ -7,7 +7,19 @@ import experiences from "@data/experiences";
         @apply select-none;
     }
     .experience-table {
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      @apply overflow-hidden rounded-sm border border-catpuccin-teal;
+    }
+
+    .experience-header {
+      @apply flex cursor-pointer items-center justify-between border-b border-catpuccin-teal p-4 transition-colors hover:bg-catpuccin-teal;
+    }
+
+    .expand-button {
+      @apply flex h-6 w-6 items-center justify-center border border-catpuccin-teal text-catpuccin-teal transition-colors hover:bg-teal-100 hover:text-catpuccin-base;
+    }
+
+    .list-items {
+      @apply list-disc space-y-1 pl-5 text-sm text-catpuccin-text;
     }
 
     .experience-details {
@@ -17,26 +29,26 @@ import experiences from "@data/experiences";
 
 <div class="experience-table-container mx-auto">
     <div
-        class="experience-table overflow-hidden rounded-sm border border-catpuccin-teal"
+        class="experience-table "
     >
         {experiences.map((exp) => (
-        <div class="experience-row group" data-id={exp.id}>
+        <div class="experience-row" data-id={exp.id}>
             <!-- Main Row (Always Visible) -->
             <div
-                class="experience-header flex cursor-pointer items-center justify-between border-b border-catpuccin-teal p-4 transition-colors hover:bg-catpuccin-teal"
+                class="experience-header  group "
             >
                 <div
                     class="flex flex-col lg:grid lg:grid-cols-4 lg:items-center lg:text-center"
                 >
                     <!-- Period -->
-                    <div>
+                    <div class="font-semibold text-catpuccin-sky group-hover:text-catpuccin-base lg:text-lg">
                         <span
-                            class="font-bold text-catpuccin-sky group-hover:text-catpuccin-base lg:text-lg"
+                            class=""
                             >{exp.startPeriod}</span
                         >
                         -
                         <span
-                            class="font-bold text-catpuccin-sky group-hover:text-catpuccin-base lg:text-lg"
+                            class=""
                             >{
                                 exp.stillWork || !exp.endPeriod
                                     ? "Present"
@@ -74,7 +86,7 @@ import experiences from "@data/experiences";
 
                 <div class="">
                     <button
-                        class="expand-button flex h-6 w-6 items-center justify-center rounded-full border border-catpuccin-teal text-catpuccin-teal transition-colors hover:bg-teal-100 hover:text-catpuccin-base group-hover:border-catpuccin-overlay-0 group-hover:text-catpuccin-base"
+                        class="expand-button  group-hover:border-catpuccin-overlay-0 group-hover:text-catpuccin-base"
                     >
                         <span class="plus-icon">+</span>
                         <span class="minus-icon hidden">-</span>
@@ -83,21 +95,21 @@ import experiences from "@data/experiences";
             </div>
 
             <!-- Expanded Content (Hidden by Default) -->
-            <div class="experience-details hidden border-b bg-white">
+            <div class="experience-details hidden border-b bg-catpuccin-mantle">
                 <div class="p-4 sm:p-6">
                     <div class="mb-4">
-                        <h4 class="mb-1 font-medium text-catpuccin-mantle">
+                        <h4 class="mb-1 font-medium">
                             {exp.title}
                         </h4>
 
-                        <p class="text-sm text-catpuccin-surface-0 sm:hidden">
+                        <p class="text-sm text-catpuccin-text sm:hidden">
                             <span
-                                class="font-bold group-hover:text-catpuccin-base lg:text-lg"
+                                class="font-bold lg:text-lg"
                                 >{exp.startPeriod}</span
                             >
                             -
                             <span
-                                class="font-bold group-hover:text-catpuccin-base lg:text-lg"
+                                class="font-bold lg:text-lg"
                                 >{
                                     exp.stillWork || !exp.endPeriod
                                         ? "Present"
@@ -106,7 +118,7 @@ import experiences from "@data/experiences";
                             >
                         </p>
 
-                        <p class="text-xs text-catpuccin-base lg:text-base">
+                        <p class="text-xs text-catpuccin-text lg:text-base">
                             {exp.companyDescription}
                         </p>
                     </div>
@@ -114,12 +126,12 @@ import experiences from "@data/experiences";
                     <!-- Products -->
                     <div class="mb-4">
                         <h5
-                            class="mb-2 text-sm font-medium text-catpuccin-surface-0"
+                            class="mb-2 text-sm font-medium text-catpuccin-blue"
                         >
                             What i've made:
                         </h5>
                         <ul
-                            class="list-disc space-y-1 pl-5 text-sm text-catpuccin-surface-1"
+                            class="list-items"
                         >
                             {exp.products.map((item) => <li>{item}</li>)}
                         </ul>
@@ -128,12 +140,12 @@ import experiences from "@data/experiences";
                     <!-- Responsibilities -->
                     <div class="mb-4">
                         <h5
-                            class="mb-2 text-sm font-medium text-catpuccin-surface-0"
+                            class="mb-2 text-sm font-medium text-catpuccin-green"
                         >
                             Responsibilities:
                         </h5>
                         <ul
-                            class="list-disc space-y-1 pl-5 text-sm text-catpuccin-surface-1"
+                            class="list-items"
                         >
                             {exp.description.map((item) => <li>{item}</li>)}
                         </ul>
@@ -141,14 +153,14 @@ import experiences from "@data/experiences";
 
                     <div>
                         <h5
-                            class="mb-2 text-sm font-medium text-catpuccin-surface-0"
+                            class="mb-2 text-sm font-medium text-catpuccin-sky"
                         >
                             Skills:
                         </h5>
                         <div class="flex flex-wrap gap-2">
                             {
                                 exp.skills.map((skill) => (
-                                    <span class="rounded-sm bg-catpuccin-blue/50 px-2 py-1 text-xs text-catpuccin-base">
+                                    <span class="rounded-sm bg-catpuccin-surface-1 border border-catpuccin-sky px-2 py-1 text-xs ">
                                         {skill}
                                     </span>
                                 ))
