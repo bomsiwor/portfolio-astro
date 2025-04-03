@@ -25,6 +25,10 @@ import experiences from "@data/experiences";
     .experience-details {
       @apply transition-all duration-300 ease-in-out border-b bg-catpuccin-mantle;
     }
+
+    .badge {
+      @apply bg-catpuccin-surface-1 border border-catpuccin-sky px-2 py-1 text-xs ;
+    }
 </style>
 
 <div class="experience-table-container mx-auto">
@@ -35,7 +39,7 @@ import experiences from "@data/experiences";
         <div class="experience-row" data-id={exp.id}>
             <!-- Main Row (Always Visible) -->
             <div
-                class="experience-header  group "
+                class="experience-header group"
             >
                 <div
                     class="flex flex-col lg:grid lg:grid-cols-4 lg:items-center lg:text-center"
@@ -160,7 +164,7 @@ import experiences from "@data/experiences";
                         <div class="flex flex-wrap gap-2">
                             {
                                 exp.skills.map((skill) => (
-                                    <span class="rounded-sm bg-catpuccin-surface-1 border border-catpuccin-sky px-2 py-1 text-xs ">
+                                    <span class="badge">
                                         {skill}
                                     </span>
                                 ))
