@@ -22,7 +22,7 @@ footer {
 }
 
 .footer-badge {
-    @apply border border-catpuccin-red px-6 py-2 text-catpuccin-red;
+    @apply border border-catpuccin-flamingo px-6 py-2 text-catpuccin-flamingo;
 }
 
 .cli-wrapper {
