@@ -12,9 +12,9 @@ export default function TerminalWindow(props: Props) {
             {/* Terminal Header */}
             <div className="flex items-center justify-between border-b border-catpuccin-blue bg-catpuccin-base p-3">
                 <div className="flex space-x-2">
-                    <div className="h-3 w-3 bg-green-400"></div>
-                    <div className="h-3 w-3 bg-yellow-400"></div>
-                    <div className="h-3 w-3 bg-purple-400"></div>
+                    <div className="h-3 w-3 bg-catpuccin-green"></div>
+                    <div className="h-3 w-3 bg-catpuccin-yellow"></div>
+                    <div className="h-3 w-3 bg-catpuccin-mauve"></div>
                 </div>
                 <div className="flex-1 text-center">
                     {/* Empty center space */}

@@ -5,36 +5,271 @@ import TechStackToolsInfra from "./TechStackToolsInfra.astro";
 import TechStackDatabase from "./TechStackDatabase.astro";
 import TechStackOS from "./TechStackOS.astro";
 import TechStackAI from "./TechStackAI.astro";
+import TerminalWindow from "@components/TerminalWindow";
+import CommandLine from "@components/CommandLine.astro";
+// Define your tech stack data
+type ITechStack = Record<string, { name: string; level: number }[]>;
+const techStack: ITechStack = {
+    "Programming Languages": [
+        { name: "PHP", level: 90 },
+        { name: "Go", level: 85 },
+        { name: "TypeScript", level: 50 },
+        { name: "Java", level: 80 },
+        { name: "Python", level: 85 },
+    ],
+    "Libraries & Frameworks": [
+        { name: "Laravel", level: 90 },
+        { name: "CodeIgniter", level: 85 },
+        { name: "Symfony", level: 80 },
+        { name: "Elysia", level: 75 },
+        { name: "Express", level: 85 },
+        { name: "Gin-Gonic", level: 80 },
+        { name: "Echo Go", level: 75 },
+        { name: "React", level: 90 },
+        { name: "NodeJS", level: 85 },
+        { name: "Run JS", level: 75 },
+    ],
+    "Tools & Infrastructure": [
+        { name: "Docker", level: 85 },
+        { name: "Prometheus", level: 80 },
+        { name: "Grafana", level: 75 },
+        { name: "Nginx", level: 85 },
+        { name: "Redis", level: 80 },
+        { name: "RabbitMQ", level: 75 },
+        { name: "AWS S3/SQR/ECS", level: 85 },
+    ],
+    Databases: [
+        { name: "PostgreSQL", level: 90 },
+        { name: "MySQL", level: 85 },
+        { name: "SQLite", level: 80 },
+        { name: "MongoDB", level: 75 },
+        { name: "Ubuntu", level: 85 },
+    ],
+    "AI Tools": [
+        { name: "OpenAI", level: 80 },
+        { name: "ChromaDB", level: 75 },
+    ],
+};
+
+// Get all category names
+const categories = Object.keys(techStack);
+
+// Function to generate terminal-style progress bar
+function terminalProgressBar(level: number, maxLength: number = 20): string {
+    const filledLength = Math.floor((level / 100) * maxLength);
+    const emptyLength = maxLength - filledLength;
+
+    let bar = "";
+
+    // Add filled segments
+    if (filledLength > 0) {
+        bar += "=".repeat(filledLength - 1);
+        // Add the arrow head if there's at least one filled segment
+        bar += ">";
+    }
+
+    // Add empty segments
+    bar += "-".repeat(emptyLength);
+
+    return `[${bar}]`;
+}
+
+// Generate a random ID for the terminal
+const terminalId = Math.random().toString(36).substring(2, 8);
 ---
 
 <!-- Tech stack -->
 <section id="tech-stack">
-    <h1>tech stack.</h1>
+    <div class="mx-auto max-w-4xl">
+        <TerminalWindow title="#!/bin/bash">
+            <div>
+                <CommandLine keyword="cd" text="~/tech-stack" />
+                <CommandLine keyword="cat" text="skills.txt" />
+                <!-- Output terminal -->
+                <div class="my-4">
+                    <div class="font-medium text-catpuccin-green">
+                        tech stacks.
+                    </div>
+                    <div class="text-catpuccin-text">
+                        With 2 years of experience, this is my battle-ready
+                        weapon to create incredible software
+                    </div>
+                </div>
 
-    <div class="mt-6 border border-catpuccin-flamingo p-4">
-        <p>
-            With 2 years of experience, this is my battle-ready weapon to build
-            software
-        </p>
+                <CommandLine text="./view-skills.sh" />
 
-        <div class="my-4 grid select-none grid-cols-1 gap-4 lg:grid-cols-2">
-            <!-- Programming Langs -->
-            <TechStackProgrammingLangs />
+                <div
+                    class="tabs-container my-4 border border-catpuccin-overlay-0 bg-catpuccin-mantle"
+                >
+                    <!-- Tab Navigation - Neovim Style -->
+                    <div
+                        class="flex flex-col border-b border-gray-700 sm:flex-row"
+                    >
+                        {
+                            categories.map((category, index) => (
+                                <button
+                                    class="tab-button border-r border-gray-700 px-4 py-1 text-sm font-medium transition-colors focus:bg-catpuccin-red focus:outline-none"
+                                    data-tab={index}
+                                    data-active={index === 0 ? "true" : "false"}
+                                >
+                                    {index + 1} : {category.replace(" & ", "-")}
+                                </button>
+                            ))
+                        }
+                    </div>
 
-            <!-- Tools & Framework -->
-            <TechStackToolsFramework />
+                    <!-- Tab Content -->
+                    {
+                        categories.map((category, index) => (
+                            <div
+                                class="tab-content p-4"
+                                data-tab={index}
+                                data-active={index === 0 ? "true" : "false"}
+                            >
+                                <div class="grid grid-cols-1 gap-3 font-spacemono sm:grid-cols-2 lg:grid-cols-3">
+                                    {techStack[category].map((tech) => (
+                                        <div class="tech-item cursor-default border border-catpuccin-green bg-catpuccin-mantle p-2">
+                                            <div class="mb-1 flex justify-between">
+                                                <span class="text-sm text-catpuccin-yellow">
+                                                    {tech.name}
+                                                </span>
+                                                <span class="text-xs text-catpuccin-sky">
+                                                    {tech.level}%
+                                                </span>
+                                            </div>
+                                            <div class="terminal-progress">
+                                                <p class="text-sm">
+                                                    {terminalProgressBar(
+                                                        tech.level,
+                                                    )}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
 
-            <!-- Tools -->
-            <TechStackToolsInfra />
-
-            <!-- Database -->
-            <TechStackDatabase />
-
-            <!-- OS -->
-            <TechStackOS />
-
-            <!-- AI -->
-            <TechStackAI />
-        </div>
+                <div
+                    class="terminal-line typing-effect"
+                    id={`terminal-prompt-${terminalId}`}
+                >
+                    <span class="text-green-400">user@portfolio</span>
+                    <span class="text-gray-400">:</span>
+                    <span class="text-blue-400">~/tech-stack</span>
+                    <span class="text-gray-400">$</span>
+                    <span class="cursor"></span>
+                </div>
+            </div>
+        </TerminalWindow>
     </div>
 </section>
+
+<script define:vars={{ terminalId }}>
+    // Tab functionality
+    document.addEventListener("DOMContentLoaded", () => {
+        const tabButtons = document.querySelectorAll(".tab-button");
+        const tabContents = document.querySelectorAll(".tab-content");
+
+        tabButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const tabIndex = button.getAttribute("data-tab");
+
+                // Update active states for buttons
+                tabButtons.forEach((btn) =>
+                    btn.setAttribute("data-active", "false"),
+                );
+                button.setAttribute("data-active", "true");
+
+                // Update active states for content
+                tabContents.forEach((content) =>
+                    content.setAttribute("data-active", "false"),
+                );
+                document
+                    .querySelector(`.tab-content[data-tab="${tabIndex}"]`)
+                    ?.setAttribute("data-active", "true");
+            });
+        });
+
+        // Typing effect for the terminal prompt
+        const terminalPrompt = document.getElementById(
+            `terminal-prompt-${terminalId}`,
+        );
+        if (terminalPrompt) {
+            setTimeout(() => {
+                const text = " ls -la | grep skills";
+                let i = 0;
+
+                function typeWriter() {
+                    if (i < text.length) {
+                        const cursor = terminalPrompt.querySelector(".cursor");
+                        const textNode = document.createTextNode(
+                            text.charAt(i),
+                        );
+                        terminalPrompt.insertBefore(textNode, cursor);
+                        i++;
+                        setTimeout(typeWriter, Math.random() * 100 + 50);
+                    }
+                }
+
+                typeWriter();
+            }, 1000);
+        }
+    });
+</script>
+
+<style>
+    /* Terminal-inspired styling */
+    .tab-button {
+        @apply text-catpuccin-subtext-0;
+    }
+
+    .tab-button:hover {
+        @apply text-catpuccin-green;
+    }
+
+    .tab-button[data-active="true"] {
+        @apply border-b-0 bg-catpuccin-crust text-catpuccin-green;
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+    .tab-content[data-active="true"] {
+        display: block;
+        animation: terminalFadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes terminalFadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Terminal cursor blink effect */
+    .cursor {
+        display: inline-block;
+        width: 8px;
+        height: 16px;
+        background-color: #4ade80;
+        animation: blink 1s step-end infinite;
+        vertical-align: middle;
+        margin-left: 2px;
+    }
+
+    @keyframes blink {
+        0%,
+        100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+    }
+</style>
