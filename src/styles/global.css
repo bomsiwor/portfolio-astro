@@ -25,6 +25,18 @@ footer {
     @apply border border-catpuccin-red px-6 py-2 text-catpuccin-red;
 }
 
-.click-shrink {
-    @apply duration-100 ease-out active:scale-90;
+.cli-wrapper {
+    @apply mb-1 flex select-none items-start gap-2 text-sm lg:items-center lg:text-base;
+}
+
+.cli-wrapper > .cli-root {
+    @apply shrink-0 text-catpuccin-teal;
+}
+
+.cli-wrapper > .cli-keyword {
+    @apply text-catpuccin-peach;
+}
+
+.cli-wrapper > .cli-args {
+    @apply text-catpuccin-text;
 }
