@@ -16,9 +16,11 @@ export default function DoubleStackButton({
             className="group relative inline-block cursor-pointer"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            onFocus={() => setIsHovered(true)}
+            onBlur={() => setIsHovered(false)}
         >
             {/* Bottom rectangle (always visible) */}
-            <div className="flex items-center justify-start gap-2 border border-catpuccin-text px-4 py-2 group-hover:border-catpuccin-yellow group-hover:text-catpuccin-yellow">
+            <div className="flex items-center justify-start gap-2 border border-catpuccin-text px-4 py-2 group-hover:border-catpuccin-yellow group-hover:text-catpuccin-yellow group-focus:border-catpuccin-yellow">
                 {icon && <span>{icon}</span>}
                 <div>{children}</div>
             </div>

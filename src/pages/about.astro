@@ -5,6 +5,7 @@ import GeneralLayout from "@layout/GeneralLayout.astro";
 import ExperienceTable from "@components/ExperienceTable.astro";
 import EducationTable from "@components/EducationTable.astro";
 import socials from "@data/socials";
+import partners from "@data/partners";
 import { Image } from "astro:assets";
 import frontImage from "../images/front-image-closeup.webp";
 ---
@@ -112,7 +113,32 @@ import frontImage from "../images/front-image-closeup.webp";
     <section id="partners">
         <h1 class="text-catpuccin-mauve">previous partners</h1>
 
-        <div class="mt-6 border border-catpuccin-mauve p-4"></div>
+        <div
+            class="mt-6 grid grid-cols-1 gap-4 border border-catpuccin-mauve p-4 lg:grid-cols-5"
+        >
+            {
+                partners.map((partner) => {
+                    return (
+                        <a
+                            class="group flex items-center gap-4 border border-catpuccin-mauve p-2 transition-all duration-100 hover:bg-catpuccin-mauve hover:text-catpuccin-base focus:bg-catpuccin-mauve focus:text-catpuccin-base"
+                            href="#"
+                        >
+                            <div class="flex aspect-square h-24 items-center justify-center border border-catpuccin-mauve p-2 group-hover:bg-catpuccin-base group-focus:bg-catpuccin-base">
+                                <Image
+                                    class="max-h-16 w-auto"
+                                    title={partner.name}
+                                    src={partner.imagePath}
+                                    alt={partner.name}
+                                    width={200}
+                                    height={200}
+                                />
+                            </div>
+                            <p class="text-sm">{partner.name}</p>
+                        </a>
+                    );
+                })
+            }
+        </div>
     </section>
 
     <!-- Education -->
