@@ -1,0 +1,40 @@
+---
+import TechStackProgrammingLangs from "@components/about/TechStackProgrammingLangs.astro";
+import TechStackToolsFramework from "@components/about/TechStackToolsFramework.astro";
+import TechStackToolsInfra from "./TechStackToolsInfra.astro";
+import TechStackDatabase from "./TechStackDatabase.astro";
+import TechStackOS from "./TechStackOS.astro";
+import TechStackAI from "./TechStackAI.astro";
+---
+
+<!-- Tech stack -->
+<section id="tech-stack">
+    <h1>tech stack.</h1>
+
+    <div class="mt-6 border border-catpuccin-flamingo p-4">
+        <p>
+            With 2 years of experience, this is my battle-ready weapon to build
+            software
+        </p>
+
+        <div class="my-4 grid select-none grid-cols-1 gap-4 lg:grid-cols-2">
+            <!-- Programming Langs -->
+            <TechStackProgrammingLangs />
+
+            <!-- Tools & Framework -->
+            <TechStackToolsFramework />
+
+            <!-- Tools -->
+            <TechStackToolsInfra />
+
+            <!-- Database -->
+            <TechStackDatabase />
+
+            <!-- OS -->
+            <TechStackOS />
+
+            <!-- AI -->
+            <TechStackAI />
+        </div>
+    </div>
+</section>

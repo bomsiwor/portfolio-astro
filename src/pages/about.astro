@@ -8,6 +8,7 @@ import socials from "@data/socials";
 import partners from "@data/partners";
 import { Image } from "astro:assets";
 import frontImage from "../images/front-image-closeup.webp";
+import TechStackSection from "@components/about/TechStackSection.astro";
 ---
 
 <style>
@@ -95,12 +96,8 @@ import frontImage from "../images/front-image-closeup.webp";
         </div>
     </section>
 
-    <!-- Tech stack -->
-    <section id="tech-stack">
-        <h1>2 years of experience tech stack. battle ready !</h1>
-
-        <div class="mt-6 border border-catpuccin-flamingo p-4"></div>
-    </section>
+    <!-- Tech Stack -->
+    <TechStackSection />
 
     <!-- Experience -->
     <section id="experience">
@@ -121,7 +118,7 @@ import frontImage from "../images/front-image-closeup.webp";
                     return (
                         <a
                             class="group flex items-center gap-4 border border-catpuccin-mauve p-2 transition-all duration-100 hover:bg-catpuccin-mauve hover:text-catpuccin-base focus:bg-catpuccin-mauve focus:text-catpuccin-base"
-                            href="#"
+                            href={partner.url}
                         >
                             <div class="flex aspect-square h-24 items-center justify-center border border-catpuccin-mauve p-2 group-hover:bg-catpuccin-base group-focus:bg-catpuccin-base">
                                 <Image

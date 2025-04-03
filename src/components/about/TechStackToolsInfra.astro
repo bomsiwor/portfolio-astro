@@ -1,0 +1,41 @@
+---
+import TechStackSubSection from "./TechStackSubSection.astro";
+import TechStackCard from "@components/TechStackCard.astro";
+import AWSIcon from "@components/icons/AWSIcon.astro";
+import DockerIcon from "@components/icons/DockerIcon.astro";
+import PrometheusIcon from "@components/icons/PrometheusIcon.astro";
+import GrafanaIcon from "@components/icons/GrafanaIcon.astro";
+import NginxIcon from "@components/icons/NginxIcon.astro";
+import RedisIcon from "@components/icons/RedisIcon.astro";
+import RabbitMQIcon from "@components/icons/RabbitMQIcon.astro";
+---
+
+<TechStackSubSection title="Tools & Infra">
+    <TechStackCard name="Docker" color="catpuccin-sky">
+        <DockerIcon width="24px" slot="icon" />
+    </TechStackCard>
+
+    <TechStackCard name="Prometheus" color="catpuccin-sky">
+        <PrometheusIcon width="24px" slot="icon" />
+    </TechStackCard>
+
+    <TechStackCard name="Grafana" color="catpuccin-sky">
+        <GrafanaIcon width="24px" slot="icon" />
+    </TechStackCard>
+
+    <TechStackCard name="Nginx" color="catpuccin-sky">
+        <NginxIcon width="24px" slot="icon" />
+    </TechStackCard>
+
+    <TechStackCard name="Redis" color="catpuccin-sky">
+        <RedisIcon width="24px" slot="icon" />
+    </TechStackCard>
+
+    <TechStackCard name="RabbitMQ" color="catpuccin-sky">
+        <RabbitMQIcon width="24px" slot="icon" />
+    </TechStackCard>
+
+    <TechStackCard name="AWS S3/ECR/ECS" color="catpuccin-sky">
+        <AWSIcon width="24px" slot="icon" />
+    </TechStackCard>
+</TechStackSubSection>

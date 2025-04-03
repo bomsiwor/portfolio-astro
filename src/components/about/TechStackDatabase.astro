@@ -1,0 +1,26 @@
+---
+import TechStackSubSection from "./TechStackSubSection.astro";
+import TechStackCard from "@components/TechStackCard.astro";
+import PostgresIcon from "@components/icons/PostgresIcon.astro";
+import MySQLIcon from "@components/icons/MySQLIcon.astro";
+import SQLiteIcon from "@components/icons/SQLiteIcon.astro";
+import MongoDBIcon from "@components/icons/MongoDBIcon.astro";
+---
+
+<TechStackSubSection title="Database">
+    <TechStackCard name="PostgreSQL" color="catpuccin-sky">
+        <PostgresIcon width="24px" slot="icon" />
+    </TechStackCard>
+
+    <TechStackCard name="MySQL" color="catpuccin-sky">
+        <MySQLIcon width="24px" slot="icon" />
+    </TechStackCard>
+
+    <TechStackCard name="SQLite" color="catpuccin-sky">
+        <SQLiteIcon width="24px" slot="icon" />
+    </TechStackCard>
+
+    <TechStackCard name="MongoDB" color="catpuccin-sky">
+        <MongoDBIcon width="24px" slot="icon" />
+    </TechStackCard>
+</TechStackSubSection>
