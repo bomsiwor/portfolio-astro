@@ -5,6 +5,14 @@ html {
     @apply selection:bg-catpuccin-flamingo selection:text-catpuccin-mantle;
 }
 
+footer {
+    @apply mt-12 flex flex-col items-center justify-between lg:flex-row lg:items-end;
+}
+
+.footer-badge {
+    @apply border border-catpuccin-red px-6 py-2 text-catpuccin-red;
+}
+
 .click-shrink {
     @apply duration-100 ease-out active:scale-90;
 }

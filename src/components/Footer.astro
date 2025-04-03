@@ -4,9 +4,9 @@ import CommandLine from "./CommandLine.astro";
 const currentYear = new Date().getFullYear();
 ---
 
-<footer
-    class="mt-12 flex flex-col items-center justify-between lg:flex-row lg:items-end"
->
+<style></style>
+
+<footer>
     <div>
         <CommandLine keyword="echo" text="'thank you for watching'" />
         <CommandLine
@@ -16,8 +16,8 @@ const currentYear = new Date().getFullYear();
         <CommandLine keyword="echo" text="'made with love & passions.'" />
     </div>
 
-    <div class="mt-4 flex justify-end">
-        <div class="bg-catpuccin-red px-6 py-2 text-white">
+    <div class="mt-4">
+        <div class="footer-badge">
             bomsiwor@gmail.com | {currentYear}
         </div>
     </div>
