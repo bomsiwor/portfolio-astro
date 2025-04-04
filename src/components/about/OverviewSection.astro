@@ -1,0 +1,66 @@
+---
+import { Image } from "astro:assets";
+import frontImage from "../../images/front-image-closeup.webp";
+import DoubleStackButton from "@components/DoubleStackButton";
+import socials from "@data/socials";
+import Section from "./Section.astro";
+
+const id = "overview";
+const title = "about me";
+---
+
+<style>
+    .overview-divider {
+        @apply my-2 h-1 w-full bg-catpuccin-teal;
+    }
+</style>
+
+<Section id={id} title={title}>
+    <div class="mt-9 flex flex-col justify-between gap-4 lg:flex-row">
+        <!-- Short Story -->
+        <div class="text-center text-sm lg:w-[25vw] lg:text-right lg:text-base">
+            <p>
+                A Nuclear Engineering survivor that turned into code warrior —I
+                build software that survives the apocalypse
+            </p>
+            <div class="overview-divider"></div>
+            <p>
+                Obsessed with low-level, DevOps, and turning caffeine into
+                bulletproof systems. Every year, I level up like it’s RPG
+                grinding season
+            </p>
+
+            <div class="overview-divider"></div>
+            <p>
+                I don’t just ship tech—I ship value that makes businesses go
+                "OH. DAMN."
+            </p>
+            <div class="overview-divider"></div>
+            <p>I do mentoring for software engineer newcomer</p>
+        </div>
+        <!-- Photo -->
+        <div class="order-first flex justify-center lg:order-1 lg:w-[25vw]">
+            <Image
+                src={frontImage}
+                alt="Pixel art of Bomsiwor"
+                class="aspect-square w-full object-cover lg:w-[25vw]"
+                loading={"eager"}
+            />
+        </div>
+
+        <!-- Social links -->
+        <div class="lg:order-2 lg:w-[25vw]">
+            <p class="mb-4 text-center lg:text-left">you can reach me via</p>
+
+            <div class="flex flex-col gap-4">
+                {
+                    socials.map((social) => (
+                        <DoubleStackButton client:load url={social.url}>
+                            {social.platform}
+                        </DoubleStackButton>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</Section>

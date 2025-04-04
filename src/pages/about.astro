@@ -2,13 +2,13 @@
 import CommandLine from "@components/CommandLine.astro";
 import DoubleStackButton from "@components/DoubleStackButton";
 import GeneralLayout from "@layout/GeneralLayout.astro";
-import ExperienceTable from "@components/ExperienceTable.astro";
-import EducationTable from "@components/EducationTable.astro";
-import socials from "@data/socials";
-import partners from "@data/partners";
-import { Image } from "astro:assets";
-import frontImage from "../images/front-image-closeup.webp";
 import TechStackSection from "@components/about/TechStackSection.astro";
+import OverviewSection from "@components/about/OverviewSection.astro";
+import ExperienceSection from "@components/about/ExperienceSection.astro";
+import EducationSection from "@components/about/EducationSection.astro";
+import PartnersSection from "@components/about/PartnersSection.astro";
+import LicenseCertificationSection from "@components/about/LicenseCertificationSection.astro";
+import PublicationSection from "@components/about/PublicationSection.astro";
 ---
 
 <style>
@@ -40,108 +40,23 @@ import TechStackSection from "@components/about/TechStackSection.astro";
     </div>
 
     <!-- Overview -->
-    <section id="overview">
-        <h1>about me</h1>
-
-        <div class="mt-9 flex flex-col justify-between gap-4 lg:flex-row">
-            <!-- Short Story -->
-            <div
-                class="text-center text-sm lg:w-[25vw] lg:text-right lg:text-base"
-            >
-                <p>
-                    A Nuclear Engineering survivor that turned into code warrior
-                    —I build software that survives the apocalypse
-                </p>
-                <div class="overview-divider"></div>
-                <p>
-                    Obsessed with low-level, DevOps, and turning caffeine into
-                    bulletproof systems. Every year, I level up like it’s RPG
-                    grinding season
-                </p>
-
-                <div class="overview-divider"></div>
-                <p>
-                    I don’t just ship tech—I ship value that makes businesses go
-                    "OH. DAMN."
-                </p>
-                <div class="overview-divider"></div>
-                <p>I do mentoring for software engineer newcomer</p>
-            </div>
-            <!-- Photo -->
-            <div class="order-first flex justify-center lg:order-1 lg:w-[25vw]">
-                <Image
-                    src={frontImage}
-                    alt="Pixel art of Bomsiwor"
-                    class="aspect-square w-full object-cover lg:w-[25vw]"
-                    loading={"eager"}
-                />
-            </div>
-
-            <!-- Social links -->
-            <div class="lg:order-2 lg:w-[25vw]">
-                <p class="mb-4 text-center lg:text-left">
-                    you can reach me via
-                </p>
-
-                <div class="flex flex-col gap-4">
-                    {
-                        socials.map((social) => (
-                            <DoubleStackButton client:load url={social.url}>
-                                {social.platform}
-                            </DoubleStackButton>
-                        ))
-                    }
-                </div>
-            </div>
-        </div>
-    </section>
+    <OverviewSection />
 
     <!-- Tech Stack -->
     <TechStackSection />
 
     <!-- Experience -->
-    <section id="experience">
-        <h1 class="text-catpuccin-lavender">experiences</h1>
-
-        <ExperienceTable />
-    </section>
-
-    <!-- Previous partners -->
-    <section id="partners">
-        <h1 class="text-catpuccin-mauve">previous partners</h1>
-
-        <div
-            class="mt-6 grid grid-cols-1 gap-4 border border-catpuccin-mauve p-4 lg:grid-cols-5"
-        >
-            {
-                partners.map((partner) => {
-                    return (
-                        <a
-                            class="group flex items-center gap-4 border border-catpuccin-mauve p-2 transition-all duration-100 hover:bg-catpuccin-mauve hover:text-catpuccin-base focus:bg-catpuccin-mauve focus:text-catpuccin-base"
-                            href={partner.url}
-                        >
-                            <div class="flex aspect-square h-24 items-center justify-center border border-catpuccin-mauve p-2 group-hover:bg-catpuccin-base group-focus:bg-catpuccin-base">
-                                <Image
-                                    class="max-h-16 w-auto"
-                                    title={partner.name}
-                                    src={partner.imagePath}
-                                    alt={partner.name}
-                                    width={200}
-                                    height={200}
-                                />
-                            </div>
-                            <p class="text-sm">{partner.name}</p>
-                        </a>
-                    );
-                })
-            }
-        </div>
-    </section>
+    <ExperienceSection />
 
     <!-- Education -->
-    <section id="educations">
-        <h1 class="text-catpuccin-red">educations</h1>
+    <EducationSection />
 
-        <EducationTable />
-    </section>
+    <!-- Certification -->
+    <LicenseCertificationSection />
+
+    <!-- Publication -->
+    <PublicationSection />
+
+    <!-- Previous partners -->
+    <PartnersSection />
 </GeneralLayout>
