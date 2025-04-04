@@ -53,22 +53,40 @@ const filteredHeadings = headings.filter(
 
 // Function to determine the indentation level
 const getIndentClass = (depth: number): string => {
-    const baseIndent = "ml-0";
-    const indentStep = 4;
+    // const baseIndent = "ml-0";
+    // const indentStep = 4;
 
-    if (depth <= minDepth) return baseIndent;
+    if (depth <= minDepth) return "indent-base";
 
     const indentLevel = depth - minDepth;
-    return `ml-${indentLevel * indentStep}`;
+    return `indent-${indentLevel}`;
 };
 ---
+
+<style>
+    article.full-width {
+        @apply lg:col-span-4;
+    }
+
+    article.with-toc {
+        @apply lg:col-span-3;
+    }
+
+    .indent-base {
+        @apply ml-0;
+    }
+
+    .indent-1 {
+        @apply ml-4;
+    }
+</style>
 
 <GeneralLayout path={url as string} title={frontmatter.title}>
     <CommandLine keyword="cat" text={fileName} />
 
     <div class="mx-auto max-w-5xl">
         <!-- Header -->
-        <div class="my-10">
+        <div class="mt-10">
             <h1 class="text-3xl text-catpuccin-text md:text-4xl lg:text-5xl">
                 {frontmatter.title}
             </h1>
@@ -87,14 +105,25 @@ const getIndentClass = (depth: number): string => {
             </p>
 
             <div class="my-4">
-                <Image
-                    class="border border-catpuccin-mauve object-cover p-4"
-                    src={image as ImageMetadata}
-                    width={typeof image === "string" ? 600 : undefined}
-                    height={typeof image === "string" ? 400 : undefined}
-                    alt={frontmatter.imgCaption || frontmatter.title}
-                    loading={"eager"}
-                />
+                {
+                    typeof image == "string" && image.startsWith("http") ? (
+                        <Image
+                            src={image}
+                            width={600}
+                            height={400}
+                            alt={frontmatter.imgCaption || frontmatter.title}
+                            loading="eager"
+                            class="min-w-full border border-catpuccin-mauve object-cover p-4"
+                        />
+                    ) : (
+                        <Image
+                            src={image as ImageMetadata}
+                            alt={frontmatter.imgCaption || frontmatter.title}
+                            loading="eager"
+                            class="min-w-full border border-catpuccin-mauve object-cover p-4"
+                        />
+                    )
+                }
 
                 <div class="mt-2 bg-catpuccin-mauve p-3 text-catpuccin-base">
                     <p>{frontmatter.imgCaption || frontmatter.title}</p>
@@ -128,7 +157,9 @@ const getIndentClass = (depth: number): string => {
                 }
             </aside>
 
-            <article class="lg:col-span-3">
+            <article
+                class=`${filteredHeadings.length > 0 ? "with-toc" : "full-width"} `
+            >
                 <ArticleProse>
                     <slot />
                 </ArticleProse>

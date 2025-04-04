@@ -26,7 +26,7 @@ footer {
 }
 
 .cli-wrapper {
-    @apply mb-1 select-none items-start gap-2 text-sm lg:items-center lg:text-base;
+    @apply mb-2 select-none items-start gap-2 text-sm lg:items-center lg:text-base;
 }
 
 .cli-wrapper > .cli-root {
