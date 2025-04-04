@@ -24,7 +24,7 @@ const blogs = defineCollection({
         z.object({
             title: z.string(),
             description: z.string(),
-            image: image(),
+            image: image().or(z.string()),
             imgCaption: z.string(),
             year: z.number(),
             publishedAt: z.string().transform((str) => new Date(str)),

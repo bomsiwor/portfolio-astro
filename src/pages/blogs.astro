@@ -6,7 +6,7 @@ import GeneralLayout from "../layouts/GeneralLayout.astro";
 import { Image } from "astro:assets";
 
 // Sample blog data - in a real app, this would come from a CMS or API
-const blogs = await getCollection<"blogs">("blogs")
+const blogs = await getCollection<"blogs">("blogs");
 
 // Get the first blog for initial headline display
 const headlineBlogs = blogs.slice(0, 3);
@@ -47,9 +47,15 @@ const restBlogs = blogs.slice(7);
                         <div class="h-full border border-catpuccin-mauve p-4">
                             <!-- Carousel content -->
                             {
-                                headlineBlogs.map((blog, i:number) => {
-              const { title, tags, year, description, image, imgCaption } =
-                                        blog.data;
+                                headlineBlogs.map((blog, i: number) => {
+                                    const {
+                                        title,
+                                        tags,
+                                        year,
+                                        description,
+                                        image,
+                                        imgCaption,
+                                    } = blog.data;
 
                                     return (
                                         <div
@@ -60,19 +66,28 @@ const restBlogs = blogs.slice(7);
                                                     : "opacity: 0; pointer-events: none"
                                             }
                                         >
-                                            <!-- Image -->
-<Image
-  src={ image  } 
-  width={typeof image === 'string' ? 600 : undefined}
-  height={typeof image === 'string' ? 400 : undefined}
-  alt={imgCaption || title}
-  loading="eager"
-  class="mb-4 h-64 w-full object-cover bg-gray-200"
-/>
+                                            {typeof image == "string" &&
+                                            image.startsWith("http") ? (
+                                                <Image
+                                                    src={image}
+                                                    width={600}
+                                                    height={400}
+                                                    alt={imgCaption || title}
+                                                    loading="eager"
+                                                    class="mb-4 h-64 w-full bg-gray-200 object-cover"
+                                                />
+                                            ) : (
+                                                <Image
+                                                    src={image as ImageMetadata}
+                                                    alt={imgCaption || title}
+                                                    loading="eager"
+                                                    class="mb-4 h-64 w-full bg-gray-200 object-cover"
+                                                />
+                                            )}
 
                                             <a
                                                 class="mb-2 font-pixel text-2xl transition-colors duration-200 hover:text-catpuccin-sky"
-                  href={"/blogs/" + blog.id}
+                                                href={"/blogs/" + blog.id}
                                             >
                                                 {title}
                                             </a>
@@ -106,7 +121,7 @@ const restBlogs = blogs.slice(7);
                             <!-- Carousel Navigation Dots -->
                             <div class="mt-4 flex justify-center space-x-2">
                                 {
-                                    headlineBlogs.map((_:any, i:any) => {
+                                    headlineBlogs.map((_: any, i: any) => {
                                         return (
                                             <button
                                                 class="carousel-dot h-3 w-3 cursor-pointer border border-catpuccin-mauve bg-catpuccin-mauve transition-colors duration-300"
@@ -125,9 +140,8 @@ const restBlogs = blogs.slice(7);
             <!-- Right Side - Article List -->
             <div class="flex flex-col justify-between gap-4 lg:col-span-1">
                 {
-                    precedentBlogs.map((blog:any) => {
-                        const { title, tags, year, description } =
-                            blog.data;
+                    precedentBlogs.map((blog: any) => {
+                        const { title, tags, year, description } = blog.data;
                         return (
                             <BlogCardList
                                 title={title}
@@ -143,7 +157,7 @@ const restBlogs = blogs.slice(7);
 
         <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
             {
-                restBlogs.map((blog:any) => {
+                restBlogs.map((blog: any) => {
                     const { title, tags, year, description } = blog.data;
                     return (
                         <BlogCardList
