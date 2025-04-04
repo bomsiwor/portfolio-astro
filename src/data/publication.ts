@@ -17,3 +17,5 @@ const publications: IPublication[] = [
         url: "https://pubs.aip.org/aip/acp/article-abstract/3167/1/030009/3304534/Implementation-interoperability-for-application?redirectedFrom=fulltext",
     },
 ];
+
+export default publications;

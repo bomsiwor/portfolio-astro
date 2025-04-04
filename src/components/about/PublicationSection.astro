@@ -1,10 +1,42 @@
 ---
 import Section from "./Section.astro";
+import publication from "@data/publication";
 
 const id = "publication";
 const title = "publication";
 ---
 
 <Section id={id} title={title}>
-    <div></div>
+    <div class="p-4">
+        <ul class="list-[square]">
+            {
+                publication.map((pub) => {
+                    return (
+                        <li>
+                            <div>
+                                <div class="text-catpuccin-teal">
+                                    "{pub.title}"
+                                </div>
+                                on {pub.name} ({pub.publishedAt})
+                            </div>
+                            <div class="mt-2">
+                                <a
+                                    href={pub.DOI}
+                                    class="border border-catpuccin-teal p-2 text-sm"
+                                >
+                                    DOI Here
+                                </a>
+                                <a
+                                    href={pub.url}
+                                    class="border border-catpuccin-teal p-2 text-sm"
+                                >
+                                    Publication Page
+                                </a>
+                            </div>
+                        </li>
+                    );
+                })
+            }
+        </ul>
+    </div>
 </Section>

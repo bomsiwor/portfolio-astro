@@ -1,10 +1,67 @@
 ---
 import Section from "./Section.astro";
+import { softwareCerts, nonRelatedCerts } from "@data/certification";
 
 const id = "certification";
 const title = "license & certification";
 ---
 
 <Section id={id} title={title}>
-    <div></div>
+    <h2 class="my-4 text-center text-lg font-medium lg:text-left">
+        Software Related Certification
+    </h2>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3">
+        {
+            softwareCerts.map((softCert) => {
+                return (
+                    <div class="border border-catpuccin-teal p-4">
+                        <h3 class="text-catpuccin-text">{softCert.name}</h3>
+                        <div class="text-catpuccin-subtext-0">
+                            {softCert.issuer} ({softCert.year})
+                        </div>
+
+                        <p class="my-4 text-sm">{softCert.description}</p>
+
+                        <a
+                            class="mt-2 border border-catpuccin-teal p-2 text-sm transition-colors duration-100 hover:bg-catpuccin-teal hover:text-catpuccin-base"
+                            href={softCert.url || "#"}
+                        >
+                            Certificate Link
+                        </a>
+                    </div>
+                );
+            })
+        }
+    </div>
+
+    <h2 class="my-4 text-center text-lg font-medium lg:text-left">
+        Non-Software Related Certification
+    </h2>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3">
+        {
+            nonRelatedCerts.map((softCert) => {
+                return (
+                    <div class="border border-catpuccin-teal p-4">
+                        <h3 class="text-catpuccin-text">{softCert.name}</h3>
+                        <div class="text-catpuccin-subtext-0">
+                            {softCert.issuer} ({softCert.year})
+                        </div>
+
+                        <p class="my-4 text-sm">{softCert.description}</p>
+
+                        {softCert.url && (
+                            <a
+                                class="mt-2 border border-catpuccin-teal p-2 text-sm transition-colors duration-100 hover:bg-catpuccin-teal hover:text-catpuccin-base"
+                                href={softCert.url}
+                            >
+                                Certificate Link
+                            </a>
+                        )}
+                    </div>
+                );
+            })
+        }
+    </div>
 </Section>
