@@ -17,11 +17,13 @@ const restBlogs = blogs.slice(7);
 <GeneralLayout title="Blogs" path={"blogs"}>
     <!-- Command line -->
     <section class="mb-4">
+        <CommandLine keyword="cd" text="blogs" />
         <CommandLine
+            path="blogs"
             keyword="echo"
             text="'read all of my thoughts, learning journal, and messy writings. But hey, it\'s all useful tho!'"
         />
-        <CommandLine keyword="ls -al" text="blogs.log" />
+        <CommandLine path="blogs" keyword="ls -al" text="blogs.log" />
     </section>
 
     <!-- Main Content -->

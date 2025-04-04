@@ -1,14 +1,18 @@
 ---
 interface Props {
+    path?: string;
     keyword?: string;
     text: string;
 }
 
-const { keyword, text } = Astro.props;
+const { keyword, text, path } = Astro.props;
 ---
 
 <div class="cli-wrapper">
-    <span class="cli-root">root $ </span>
+    <span class="cli-root"
+        >root {path && <span class="text-catpuccin-blue">{`: ~/${path}`}</span>}
+        $
+    </span>
     {keyword && <span class="cli-keyword">{keyword}</span>}
     <span class="cli-args">{text}</span>
 </div>
