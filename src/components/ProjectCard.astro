@@ -24,17 +24,15 @@ const truncatedSubtitle =
 const teamBadgeText = teamSize === 1 ? "solo" : `${teamSize} person`;
 ---
 
-<div
-    class="w-full max-w-sm overflow-hidden rounded-sm border border-catpuccin-sapphire"
->
+<div class="w-full max-w-sm overflow-hidden border border-catpuccin-sapphire">
     <!-- Terminal Header -->
     <div
         class="flex items-center justify-between border-b border-catpuccin-sapphire p-3"
     >
         <div class="flex space-x-2">
-            <div class="h-3 w-3 rounded-full bg-green-400"></div>
-            <div class="h-3 w-3 rounded-full bg-yellow-400"></div>
-            <div class="h-3 w-3 rounded-full bg-purple-400"></div>
+            <div class="h-3 w-3 bg-catpuccin-green"></div>
+            <div class="h-3 w-3 bg-catpuccin-yellow"></div>
+            <div class="h-3 w-3 bg-catpuccin-mauve"></div>
         </div>
 
         <div>
@@ -49,14 +47,6 @@ const teamBadgeText = teamSize === 1 ? "solo" : `${teamSize} person`;
             class="absolute left-4 top-4 cursor-default border border-catpuccin-sky px-4 py-1 text-sm text-catpuccin-sky hover:bg-catpuccin-sky hover:text-catpuccin-base"
         >
             {teamBadgeText}
-        </div>
-
-        <!-- Programming languange -->
-        <div class="absolute right-4 top-4 flex space-x-1">
-            <div class="h-6 w-6 bg-sky-400"></div>
-            <div class="h-6 w-6 bg-pink-400"></div>
-            <div class="h-6 w-6 bg-red-400"></div>
-            <div class="h-6 w-6 bg-pink-200"></div>
         </div>
 
         <!-- Project Image -->
