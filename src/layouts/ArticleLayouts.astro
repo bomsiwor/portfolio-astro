@@ -4,7 +4,7 @@ import { type MarkdownLayoutProps } from "astro";
 import CommandLine from "../components/CommandLine.astro";
 import ArticleProse from "../components/ArticleProse.astro";
 import GeneralLayout from "./GeneralLayout.astro";
-import { getImage, Image } from "astro:assets";
+import { Image } from "astro:assets";
 
 type Props = MarkdownLayoutProps<{
     title: string;
@@ -16,7 +16,7 @@ type Props = MarkdownLayoutProps<{
 }>;
 
 // Extract frontmatter
-const { frontmatter, url, file } = Astro.props;
+const { frontmatter, url, file, headings } = Astro.props;
 
 // Dynaimcally import image
 const images = import.meta.glob<{ default: ImageMetadata }>(
@@ -41,50 +41,116 @@ const date = parsedDate;
 // Extract the file name
 // Get only the file name
 const fileName = file.split("/").pop() as string;
+
+// Table of content
+// Filter headings based on depth
+const minDepth = 2;
+const maxDepth = 3;
+
+const filteredHeadings = headings.filter(
+    (heading) => heading.depth >= minDepth && heading.depth <= maxDepth,
+);
+
+// Function to determine the indentation level
+const getIndentClass = (depth: number): string => {
+    const baseIndent = "ml-0";
+    const indentStep = 4;
+
+    if (depth <= minDepth) return baseIndent;
+
+    const indentLevel = depth - minDepth;
+    return `ml-${indentLevel * indentStep}`;
+};
 ---
 
 <GeneralLayout path={url as string} title={frontmatter.title}>
     <CommandLine keyword="cat" text={fileName} />
 
-    <!-- Header -->
-    <div class="my-10">
-        <h1 class="text-3xl text-catpuccin-text md:text-4xl lg:text-5xl">
-            {frontmatter.title}
-        </h1>
+    <div class="mx-auto max-w-5xl">
+        <!-- Header -->
+        <div class="my-10">
+            <h1 class="text-3xl text-catpuccin-text md:text-4xl lg:text-5xl">
+                {frontmatter.title}
+            </h1>
 
-        <!-- For project -->
-        <p>
-            {
-                frontmatter.startPeriod &&
-                    `${frontmatter.startPeriod} - ${frontmatter.endPeriod || "present"} `
-            }
-        </p>
+            <!-- For project -->
+            <p>
+                {
+                    frontmatter.startPeriod &&
+                        `${frontmatter.startPeriod} - ${frontmatter.endPeriod || "present"} `
+                }
+            </p>
 
-        <!-- For Blog -->
-        <p class="text-catpuccin-subtext-0">
-            published at {date}
-        </p>
-    </div>
+            <!-- For Blog -->
+            <p class="text-catpuccin-subtext-0">
+                published at {date}
+            </p>
 
-    <!-- Article grid -->
-    <main class="grid grid-cols-1 justify-between lg:grid-cols-2">
-        <ArticleProse>
-            <slot />
-        </ArticleProse>
+            <div class="my-4">
+                <Image
+                    class="border border-catpuccin-mauve object-cover p-4"
+                    src={image as ImageMetadata}
+                    width={typeof image === "string" ? 600 : undefined}
+                    height={typeof image === "string" ? 400 : undefined}
+                    alt={frontmatter.imgCaption || frontmatter.title}
+                    loading={"eager"}
+                />
 
-        <div class="order-first mb-4 w-full lg:order-last">
-            <Image
-                class="max-h-[360px] w-full border border-catpuccin-mauve object-cover p-4"
-                src={image as ImageMetadata}
-                width={typeof image === "string" ? 600 : undefined}
-                height={typeof image === "string" ? 400 : undefined}
-                alt={frontmatter.imgCaption || frontmatter.title}
-                loading={"eager"}
-            />
-
-            <div class="mt-2 bg-catpuccin-mauve p-3 text-catpuccin-base">
-                <p>{frontmatter.imgCaption || frontmatter.title}</p>
+                <div class="mt-2 bg-catpuccin-mauve p-3 text-catpuccin-base">
+                    <p>{frontmatter.imgCaption || frontmatter.title}</p>
+                </div>
             </div>
         </div>
-    </main>
+
+        <!-- Article grid -->
+        <main class="lg:grid lg:grid-cols-4 lg:gap-8">
+            <!-- TOC -->
+            <aside class="hidden lg:block">
+                {
+                    filteredHeadings.length > 0 && (
+                        <nav class="toc-container sticky top-8 hidden border border-catpuccin-overlay-0 p-4 lg:block">
+                            <ul class="space-y-2 text-sm">
+                                {filteredHeadings.map((heading) => (
+                                    <li
+                                        class={`${getIndentClass(heading.depth)} toc-item`}
+                                    >
+                                        <button
+                                            data-toc-id={heading.slug}
+                                            class="toc-btn text-left text-catpuccin-text transition-colors duration-200 hover:text-catpuccin-red"
+                                        >
+                                            {heading.text}
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                        </nav>
+                    )
+                }
+            </aside>
+
+            <article class="lg:col-span-3">
+                <ArticleProse>
+                    <slot />
+                </ArticleProse>
+            </article>
+        </main>
+    </div>
 </GeneralLayout>
+
+<script>
+    const buttons = document.querySelectorAll<HTMLButtonElement>(".toc-btn");
+
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const element = document.getElementById(
+                button.dataset.tocId as string,
+            );
+
+            if (element) {
+                window.scrollTo({
+                    top: element.offsetTop - 100,
+                });
+            }
+        });
+    });
+</script>
