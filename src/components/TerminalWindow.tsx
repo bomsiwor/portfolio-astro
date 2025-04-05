@@ -1,14 +1,17 @@
-import type { ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 
-interface Props {
+interface Props extends HTMLAttributes<HTMLDivElement> {
     title: string;
     email?: string;
     children: ReactNode;
+    scrollable: boolean;
 }
 
-export default function TerminalWindow(props: Props) {
+export default function TerminalWindow({ className = "", ...props }: Props) {
     return (
-        <div className="overflow-hidden rounded-sm border border-catpuccin-sky">
+        <div
+            className={`overflow-hidden rounded-sm border border-catpuccin-sky ${className || ""}`}
+        >
             {/* Terminal Header */}
             <div className="flex items-center justify-between border-b border-catpuccin-blue bg-catpuccin-base p-3">
                 <div className="flex space-x-2">
@@ -25,7 +28,9 @@ export default function TerminalWindow(props: Props) {
             </div>
 
             {/* Terminal Content */}
-            <div className="bg-catpuccin-crust p-6">
+            <div
+                className={`bg-catpuccin-crust p-6 ${props.scrollable && "max-h-[90%] overflow-x-scroll"}`}
+            >
                 <div className="mb-4 flex justify-between">
                     <div className="text-white">{props.title}</div>
                     {props.email && (

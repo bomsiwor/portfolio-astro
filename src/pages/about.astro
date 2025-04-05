@@ -9,6 +9,7 @@ import EducationSection from "@components/about/EducationSection.astro";
 import PartnersSection from "@components/about/PartnersSection.astro";
 import LicenseCertificationSection from "@components/about/LicenseCertificationSection.astro";
 import PublicationSection from "@components/about/PublicationSection.astro";
+import TerminalWindow from "@components/TerminalWindow";
 ---
 
 <style>
@@ -22,6 +23,10 @@ import PublicationSection from "@components/about/PublicationSection.astro";
 
     .overview-divider {
         @apply my-2 h-1 w-full bg-catpuccin-teal;
+    }
+
+    span.highlight {
+        @apply font-semibold text-catpuccin-sky;
     }
 </style>
 
@@ -42,21 +47,84 @@ import PublicationSection from "@components/about/PublicationSection.astro";
     <!-- Overview -->
     <OverviewSection />
 
-    <!-- Tech Stack -->
-    <TechStackSection />
+    <TerminalWindow
+        title="#!/bin/bash"
+        className="mx-auto h-[90vh]"
+        scrollable
+        client:load
+    >
+        <CommandLine keyword="echo" text="`Scroll to explore more`" />
 
-    <!-- Experience -->
-    <ExperienceSection />
+        <CommandLine keyword="cat" text="short-story.log" />
 
-    <!-- Education -->
-    <EducationSection />
+        <!-- Short Story -->
+        <div
+            class="my-4 border border-catpuccin-overlay-0 p-4 font-spacemono text-catpuccin-text lg:p-8"
+        >
+            <h2 class="text-center text-2xl">Short story about me</h2>
+            <div class="indent-8 text-sm">
+                <p>
+                    Hi! I’m Dimas Febrian Bomanarakasura—but just call me <span
+                        class="highlight">Boma</span
+                    > (or Bomsiwor if you know me from social media). Surprisingly,
+                    I’m not from a computer science background. I studied <span
+                        class="highlight">Nuclear Engineering</span
+                    > and graduated in 2023.
+                </p>
+                <p>
+                    So how did I end up here? <br /> Well, I’ve loved coding since
+                    I was a kid. I used to <span class="highlight">
+                        mod PES in
+                    </span>Java and <span class="highlight">tweak GTA mods</span
+                    > just to see what would happen if I changed a value. I even
+                    had a Blogspot blog when I was 10! That curiosity stuck with
+                    me through college. I fell in love with <span
+                        class="highlight">system engineering fundamentals</span
+                    >, studied them deeply, and even became a <span
+                        class="highlight">teaching assistant</span
+                    > for those courses.
+                </p>
 
-    <!-- Certification -->
-    <LicenseCertificationSection />
+                <p>
+                    I’ve always had a strong drive to catch up with CS
+                    students—despite not having the same formal education. To
+                    bridge the gap, I joined <span class="highlight"
+                        >courses, bootcamps, and built side projects</span
+                    >. I constantly seek new skills and challenges to grow
+                    faster.
+                </p>
 
-    <!-- Publication -->
-    <PublicationSection />
+                <p>
+                    In the long run, I aim to become a senior engineer, with
+                    deep expertise in <span class="highlight"
+                        >system engineering and DevOps</span
+                    >.
+                </p>
 
-    <!-- Previous partners -->
-    <PartnersSection />
+                <p>
+                    All of this—my learning journey, my works, and the knowledge
+                    I share—is here in this portfolio. Feel free to explore it,
+                    and don’t mind the UI—still working on that part!
+                </p>
+            </div>
+        </div>
+        <!-- Tech Stack -->
+        <TechStackSection />
+
+        <!-- Experience -->
+        <ExperienceSection />
+
+        <!-- Education -->
+        <EducationSection />
+
+        <!-- Certification -->
+        <LicenseCertificationSection />
+
+        <!-- Publication -->
+        <CommandLine keyword="cat" text="publications.log" />
+        <PublicationSection />
+
+        <!-- Previous partners -->
+        <PartnersSection />
+    </TerminalWindow>
 </GeneralLayout>

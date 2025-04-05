@@ -69,7 +69,7 @@ const restBlogs = blogs.slice(7);
                                             {typeof image == "string" &&
                                             image.startsWith("http") ? (
                                                 <Image
-                                                    src={image}
+                                                    src={(image as any).src}
                                                     width={600}
                                                     height={400}
                                                     alt={imgCaption || title}
