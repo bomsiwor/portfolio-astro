@@ -4,6 +4,7 @@ import BlogCardList from "../components/BlogCardList.astro";
 import CommandLine from "../components/CommandLine.astro";
 import GeneralLayout from "../layouts/GeneralLayout.astro";
 import { Image } from "astro:assets";
+import { imageMetadata } from "astro/assets/utils";
 
 // Sample blog data - in a real app, this would come from a CMS or API
 const blogs = await getCollection<"blogs">("blogs");
@@ -66,24 +67,19 @@ const restBlogs = blogs.slice(7);
                                                     : "opacity: 0; pointer-events: none"
                                             }
                                         >
-                                            {typeof image == "string" &&
-                                            image.startsWith("http") ? (
-                                                <Image
-                                                    src={(image as any).src}
-                                                    width={600}
-                                                    height={400}
-                                                    alt={imgCaption || title}
-                                                    loading="eager"
-                                                    class="mb-4 h-64 w-full bg-gray-200 object-cover"
-                                                />
-                                            ) : (
-                                                <Image
-                                                    src={image as ImageMetadata}
-                                                    alt={imgCaption || title}
-                                                    loading="eager"
-                                                    class="mb-4 h-64 w-full bg-gray-200 object-cover"
-                                                />
-                                            )}
+                                            <Image
+                                                src={
+                                                    image instanceof
+                                                    imageMetadata
+                                                        ? (image as ImageMetadata)
+                                                        : (image as string)
+                                                }
+                                                width={600}
+                                                height={400}
+                                                alt={imgCaption || title}
+                                                loading="eager"
+                                                class="mb-4 h-64 w-full bg-gray-200 object-cover"
+                                            />
 
                                             <a
                                                 class="mb-2 font-pixel text-2xl transition-colors duration-200 hover:text-catpuccin-sky"
