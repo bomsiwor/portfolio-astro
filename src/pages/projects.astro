@@ -4,9 +4,12 @@ import ProjectCard from "../components/ProjectCard.astro";
 import GeneralLayout from "../layouts/GeneralLayout.astro";
 import { getCollection } from "astro:content";
 const projects = await getCollection("projects");
+
+const description =
+    "Here is the projects delivered by Bomanarakasura or Bomsiwor";
 ---
 
-<GeneralLayout path={"projects"} title="Projects">
+<GeneralLayout path={"projects"} title="Projects" description={description}>
     <!-- Command line -->
     <section class="mb-4">
         <CommandLine

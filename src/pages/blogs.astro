@@ -13,9 +13,12 @@ const blogs = await getCollection<"blogs">("blogs");
 const headlineBlogs = blogs.slice(0, 3);
 const precedentBlogs = blogs.slice(3, 7);
 const restBlogs = blogs.slice(7);
+
+const description =
+    "Here is how Bomsiwor express and share his thoughts, knowledges, and learning processes.";
 ---
 
-<GeneralLayout title="Blogs" path={"blogs"}>
+<GeneralLayout title="Blogs" path={"blogs"} description={description}>
     <!-- Command line -->
     <section class="mb-4">
         <CommandLine keyword="cd" text="blogs" />
@@ -176,7 +179,7 @@ const restBlogs = blogs.slice(7);
             const dots = document.querySelectorAll(".carousel-dot");
 
             let currentIndex = 0;
-            let interval: number;
+            let interval: any;
             //
             // // Function to show a specific slide
             const showSlide = (index: number) => {

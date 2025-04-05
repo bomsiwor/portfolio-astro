@@ -8,6 +8,7 @@ import { Image } from "astro:assets";
 
 type Props = MarkdownLayoutProps<{
     title: string;
+    description: string;
     publishedAt: string;
     image: string;
     imgCaption?: string;
@@ -81,7 +82,11 @@ const getIndentClass = (depth: number): string => {
     }
 </style>
 
-<GeneralLayout path={url as string} title={frontmatter.title}>
+<GeneralLayout
+    path={url as string}
+    title={frontmatter.title}
+    description={frontmatter.description}
+>
     <CommandLine keyword="cat" text={fileName} />
 
     <div class="mx-auto max-w-5xl">

@@ -10,6 +10,9 @@ import PartnersSection from "@components/about/PartnersSection.astro";
 import LicenseCertificationSection from "@components/about/LicenseCertificationSection.astro";
 import PublicationSection from "@components/about/PublicationSection.astro";
 import TerminalWindow from "@components/TerminalWindow";
+
+const description =
+    "Here is the stories and details about Dimas Febrian Bomanarakasura's experience, skills, and achievements. Check it out!";
 ---
 
 <style>
@@ -30,7 +33,7 @@ import TerminalWindow from "@components/TerminalWindow";
     }
 </style>
 
-<GeneralLayout path={"man"} title="About me">
+<GeneralLayout path={"man"} title="About me" description={description}>
     <CommandLine keyword="help -v" text="bomanarakasura" />
 
     <!-- Ask AI Banner -->

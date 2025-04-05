@@ -6,10 +6,15 @@ import Footer from "../components/Footer.astro";
 
 interface Props {
     title: string;
+    description?: string;
     path: string | string[];
 }
 
-const { title: rawTitle, path } = Astro.props;
+const {
+    title: rawTitle,
+    path,
+    description = "Dimas Febrian Bomanarakasura or Bomsiwor's projects, skills, and experience showcase as an experienced Software Engineer.",
+} = Astro.props;
 
 // Compute title
 const title = "Bomanarakasura Portfolio | " + rawTitle;
@@ -27,17 +32,14 @@ const title = "Bomanarakasura Portfolio | " + rawTitle;
         <link rel="manifest" href="/site.webmanifest" />
 
         <!-- Standard Meta  -->
-        <meta
-            name="description"
-            content="Dimas Febrian Bomanarakasura or Bomsiwor's projects, skills, and experience showcase as a experienced Software Engineer."
-        />
+        <meta name="description" content={description} />
         <link rel="sitemap" href="/sitemap-index.xml" />
 
         <!-- Facebook, Whatsapp, and Twitter Meta -->
         <meta property="og:title" content="Bomanarakasura Portfolio" />
         <meta
             property="og:description"
-            content="Bomanarakasura or Bomsiwor's projects, skills, and experience showcase as a experienced Software Engineer."
+            content="Bomanarakasura or Bomsiwor's projects, skills, and experience showcase as an experienced Software Engineer."
         />
         <meta property="og:image" content="/og-big-summary.png" />
         <meta property="og:url" content={Astro.url.href} />
