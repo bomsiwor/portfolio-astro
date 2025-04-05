@@ -1,38 +1,5 @@
 ---
-interface IEducationItems {
-    id: string;
-    startPeriod: string;
-    endPeriod: string;
-    school: string;
-    schoolDescription?: string;
-    title?: string;
-    major: string;
-    location: string;
-    description: string[];
-    skills: string[];
-}
-
-// Sample data - replace with your actual experience data
-const educations: IEducationItems[] = [
-    {
-        id: "exp1",
-        startPeriod: "August, 2019",
-        endPeriod: "September, 2023",
-        school: "Politeknik Teknologi Nuklir Indonesia",
-        schoolDescription: "",
-        title: " Diploma IV - Bachelor of Applied Engineering",
-        major: "Nuclear Technophysics - Instrumentation Engineer ",
-        description: [
-            "Led development of security monitoring platform",
-            "Implemented threat detection algorithms",
-            "Managed team of 5 engineers",
-        ],
-        skills: ["React", "Node.js", "AWS", "Security"],
-        location: "Yogyakarta, ID",
-    },
-];
-
-const edu = educations[0];
+import educations from "@data/educations"
 ---
 
 <style>
@@ -66,8 +33,8 @@ const edu = educations[0];
 
 <div class="education-table-container mx-auto">
     <div class="education-table">
-        <!-- {educations.map((exp) => ( -->
-        <div class="education-row" data-id={edu.id}>
+        {educations.map((edu) => (
+        <div class="education-row">
             <!-- Main Row (Always Visible) -->
             <div class="education-header group">
                 <div
@@ -168,7 +135,7 @@ const edu = educations[0];
                 </div>
             </div>
         </div>
-        <!-- ))}  -->
+        ))}
     </div>
 </div>
 
