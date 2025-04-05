@@ -9,9 +9,11 @@ import node from "@astrojs/node";
 
 import netlify from "@astrojs/netlify";
 
+import sitemap from "@astrojs/sitemap";
+
 // https://astro.build/config
 export default defineConfig({
-    integrations: [tailwind(), react()],
+    integrations: [tailwind(), react(), sitemap()],
     site: "https://bomsiwor.dev",
 
     adapter: netlify(),

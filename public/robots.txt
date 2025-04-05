@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bomsiwor.dev/sitemap-index.xml
