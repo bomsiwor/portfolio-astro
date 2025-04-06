@@ -7,6 +7,7 @@ imgCaption: Electronic Medical Record Dashboard
 year: 2023
 teamSize: 10
 startPeriod: September 2023
+endPeriod: March 2025
 publishedAt: 2025-04-06 11:56
 ---
 

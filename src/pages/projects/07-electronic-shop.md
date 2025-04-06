@@ -3,7 +3,7 @@ layout: ../../layouts/ArticleLayouts.astro
 title: Eletronics Shop - Backend Springboot
 description: Electronic shop backend project
 image: /src/images/earth.png
-imgCaption:
+imgCaption: Hands-on project for Java springboot cohort
 year: 2024
 teamSize: 2
 startPeriod: December 2024

@@ -3,7 +3,7 @@ layout: ../../layouts/ArticleLayouts.astro
 title: Awan Berkah Bermartabat Company Profile
 description: Company profile website for a Health facility
 image: /src/images/earth.png
-imgCaption:
+imgCaption: Awan Berkah Bermartabat Company Profile
 year: 2024
 teamSize: 4
 startPeriod: June 2024
