@@ -3,7 +3,7 @@ layout: ../../layouts/ArticleLayouts.astro
 title: Protoype of Auditools
 description: The prototype project for audit tools of Indonesian SPBE
 image: /src/images/projects/02-auditools.png
-imgCaption:
+imgCaption: Protoype of SPBE audit tools
 year: 2022
 teamSize: 2
 startPeriod: October 2022
