@@ -2,7 +2,7 @@
 layout: ../../layouts/ArticleLayouts.astro
 title: Student E-Voting System - LPUM
 description: A System to facilitates student parties voting
-image: /src/images/projects/03-lpum.png
+image: /src/images/projects/03-lpum.webp
 imgCaption: E-Voting System for LPUM Poltek Nuklir
 year: 2023
 teamSize: 1
